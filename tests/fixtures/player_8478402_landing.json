@@ -1,0 +1,248 @@
+{
+ "playerId": 8478402,
+ "isActive": true,
+ "currentTeamId": 22,
+ "currentTeamAbbrev": "EDM",
+ "fullTeamName": {
+  "default": "Edmonton Oilers",
+  "fr": "Oilers d'Edmonton"
+ },
+ "teamCommonName": {
+  "default": "Oilers"
+ },
+ "teamPlaceNameWithPreposition": {
+  "default": "Edmonton",
+  "fr": "d'Edmonton"
+ },
+ "firstName": {
+  "default": "Connor"
+ },
+ "lastName": {
+  "default": "McDavid"
+ },
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/EDM_light.svg",
+ "sweaterNumber": 97,
+ "position": "C",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/EDM/8478402.png",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 190,
+ "weightInKilograms": 86,
+ "birthDate": "1997-01-13",
+ "birthCity": {
+  "default": "Richmond Hill"
+ },
+ "birthStateProvince": {
+  "default": "Ontario"
+ },
+ "birthCountry": "CAN",
+ "shootsCatches": "L",
+ "draftDetails": {
+  "year": 2015,
+  "teamAbbrev": "EDM",
+  "round": 1,
+  "pickInRound": 1,
+  "overallPick": 1
+ },
+ "playerSlug": "connor-mcdavid-8478402",
+ "inTop100AllTime": 0,
+ "inHHOF": 0,
+ "featuredStats": {
+  "season": 20262027,
+  "regularSeason": {
+   "subSeason": {
+    "assists": 37,
+    "gameWinningGoals": 0,
+    "gamesPlayed": 19,
+    "goals": 11,
+    "otGoals": 0,
+    "pim": 4,
+    "plusMinus": 24,
+    "points": 48,
+    "powerPlayGoals": 0,
+    "powerPlayPoints": 19,
+    "shootingPctg": 0.207547,
+    "shorthandedGoals": 2,
+    "shorthandedPoints": 2,
+    "shots": 53
+   },
+   "career": {
+    "assists": 848,
+    "gameWinningGoals": 76,
+    "gamesPlayed": 813,
+    "goals": 420,
+    "otGoals": 17,
+    "pim": 334,
+    "plusMinus": 210,
+    "points": 1268,
+    "powerPlayGoals": 100,
+    "powerPlayPoints": 437,
+    "shootingPctg": 0.1518,
+    "shorthandedGoals": 11,
+    "shorthandedPoints": 21,
+    "shots": 2766
+   }
+  }
+ },
+ "careerTotals": {
+  "regularSeason": {
+   "assists": 848,
+   "avgToi": "21:54",
+   "faceoffWinningPctg": 0.4793,
+   "gameWinningGoals": 76,
+   "gamesPlayed": 813,
+   "goals": 420,
+   "otGoals": 17,
+   "pim": 334,
+   "plusMinus": 210,
+   "points": 1268,
+   "powerPlayGoals": 100,
+   "powerPlayPoints": 437,
+   "shootingPctg": 0.1518,
+   "shorthandedGoals": 11,
+   "shorthandedPoints": 21,
+   "shots": 2766
+  },
+  "playoffs": {
+   "assists": 111,
+   "avgToi": "23:38",
+   "faceoffWinningPctg": 0.461,
+   "gameWinningGoals": 5,
+   "gamesPlayed": 102,
+   "goals": 45,
+   "otGoals": 2,
+   "pim": 30,
+   "plusMinus": 23,
+   "points": 156,
+   "powerPlayGoals": 14,
+   "powerPlayPoints": 58,
+   "shootingPctg": 0.1285,
+   "shorthandedGoals": 2,
+   "shorthandedPoints": 3,
+   "shots": 350
+  }
+ },
+ "seasonTotals": [
+  {
+   "assists": 7,
+   "gameTypeId": 2,
+   "gamesPlayed": 7,
+   "goals": 7,
+   "leagueAbbrev": "QC Int PW",
+   "pim": 0,
+   "points": 14,
+   "season": 20082009,
+   "sequence": 11,
+   "teamName": {
+    "default": "York Simcoe Express"
+   }
+  },
+  {
+   "assists": 90,
+   "avgToi": "22:59",
+   "faceoffWinningPctg": 0.495125,
+   "gameTypeId": 2,
+   "gameWinningGoals": 4,
+   "gamesPlayed": 82,
+   "goals": 48,
+   "leagueAbbrev": "NHL",
+   "otGoals": 1,
+   "pim": 44,
+   "plusMinus": 17,
+   "points": 138,
+   "powerPlayGoals": 13,
+   "powerPlayPoints": 54,
+   "season": 20252026,
+   "sequence": 1,
+   "shootingPctg": 0.156863,
+   "shorthandedGoals": 1,
+   "shorthandedPoints": 2,
+   "shots": 306,
+   "teamCommonName": {
+    "default": "Oilers"
+   },
+   "teamName": {
+    "default": "Edmonton Oilers",
+    "fr": "Oilers d'Edmonton"
+   },
+   "teamPlaceNameWithPreposition": {
+    "default": "Edmonton",
+    "fr": "d'Edmonton"
+   }
+  },
+  {
+   "assists": 11,
+   "avgToi": "20:14",
+   "faceoffWinningPctg": 0.55,
+   "gameTypeId": 2,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 6,
+   "goals": 2,
+   "leagueAbbrev": "OG",
+   "otGoals": 0,
+   "pim": 0,
+   "plusMinus": 5,
+   "points": 13,
+   "powerPlayGoals": 1,
+   "season": 20252026,
+   "sequence": 11,
+   "shootingPctg": 0.08,
+   "shorthandedGoals": 0,
+   "shots": 26,
+   "teamCommonName": {
+    "default": "Canada",
+    "cs": "Kanada",
+    "de": "Kanada",
+    "es": "Canadá",
+    "fi": "Kanada",
+    "sk": "Kanada",
+    "sv": "Kanada"
+   },
+   "teamName": {
+    "default": "Canada",
+    "cs": "Kanada",
+    "de": "Kanada",
+    "es": "Canadá",
+    "fi": "Kanada",
+    "sk": "Kanada",
+    "sv": "Kanada"
+   },
+   "teamPlaceNameWithPreposition": {
+    "default": ""
+   }
+  },
+  {
+   "assists": 5,
+   "avgToi": "23:33",
+   "faceoffWinningPctg": 0.492537,
+   "gameTypeId": 3,
+   "gameWinningGoals": 0,
+   "gamesPlayed": 6,
+   "goals": 1,
+   "leagueAbbrev": "NHL",
+   "otGoals": 0,
+   "pim": 2,
+   "plusMinus": -8,
+   "points": 6,
+   "powerPlayGoals": 1,
+   "powerPlayPoints": 4,
+   "season": 20252026,
+   "sequence": 1,
+   "shootingPctg": 0.05,
+   "shorthandedGoals": 0,
+   "shorthandedPoints": 0,
+   "shots": 20,
+   "teamCommonName": {
+    "default": "Oilers"
+   },
+   "teamName": {
+    "default": "Edmonton Oilers",
+    "fr": "Oilers d'Edmonton"
+   },
+   "teamPlaceNameWithPreposition": {
+    "default": "Edmonton",
+    "fr": "d'Edmonton"
+   }
+  }
+ ]
+}

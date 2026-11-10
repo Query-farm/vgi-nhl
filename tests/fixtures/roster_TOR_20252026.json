@@ -1,0 +1,127 @@
+{
+ "forwards": [
+  {
+   "id": 8477503,
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/TOR/8477503.png",
+   "firstName": {
+    "default": "Max"
+   },
+   "lastName": {
+    "default": "Domi"
+   },
+   "sweaterNumber": 11,
+   "positionCode": "C",
+   "shootsCatches": "L",
+   "heightInInches": 70,
+   "weightInPounds": 208,
+   "heightInCentimeters": 178,
+   "weightInKilograms": 94,
+   "birthDate": "1995-03-02",
+   "birthCity": {
+    "default": "Winnipeg"
+   },
+   "birthCountry": "CAN",
+   "birthStateProvince": {
+    "default": "MB"
+   }
+  },
+  {
+   "id": 8480870,
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/TOR/8480870.png",
+   "firstName": {
+    "default": "Bo"
+   },
+   "lastName": {
+    "default": "Groulx"
+   },
+   "sweaterNumber": 29,
+   "positionCode": "C",
+   "shootsCatches": "L",
+   "heightInInches": 74,
+   "weightInPounds": 202,
+   "heightInCentimeters": 188,
+   "weightInKilograms": 92,
+   "birthDate": "2000-02-06",
+   "birthCity": {
+    "default": "Rouen"
+   },
+   "birthCountry": "FRA"
+  }
+ ],
+ "defensemen": [
+  {
+   "id": 8482126,
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/TOR/8482126.png",
+   "firstName": {
+    "default": "Emil"
+   },
+   "lastName": {
+    "default": "Andrae"
+   },
+   "positionCode": "D",
+   "shootsCatches": "L",
+   "heightInInches": 69,
+   "weightInPounds": 189,
+   "heightInCentimeters": 175,
+   "weightInKilograms": 86,
+   "birthDate": "2002-02-23",
+   "birthCity": {
+    "default": "Vastervik",
+    "cs": "Västervik",
+    "fi": "Västervik",
+    "sk": "Västervik",
+    "sv": "Västervik"
+   },
+   "birthCountry": "SWE"
+  },
+  {
+   "id": 8475171,
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/TOR/8475171.png",
+   "firstName": {
+    "default": "Oliver"
+   },
+   "lastName": {
+    "default": "Ekman-Larsson"
+   },
+   "sweaterNumber": 95,
+   "positionCode": "D",
+   "shootsCatches": "L",
+   "heightInInches": 74,
+   "weightInPounds": 190,
+   "heightInCentimeters": 188,
+   "weightInKilograms": 86,
+   "birthDate": "1991-07-17",
+   "birthCity": {
+    "default": "Karlskrona"
+   },
+   "birthCountry": "SWE"
+  }
+ ],
+ "goalies": [
+  {
+   "id": 8476932,
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/TOR/8476932.png",
+   "firstName": {
+    "default": "Anthony"
+   },
+   "lastName": {
+    "default": "Stolarz"
+   },
+   "sweaterNumber": 41,
+   "positionCode": "G",
+   "shootsCatches": "L",
+   "heightInInches": 78,
+   "weightInPounds": 248,
+   "heightInCentimeters": 198,
+   "weightInKilograms": 112,
+   "birthDate": "1994-01-20",
+   "birthCity": {
+    "default": "Edison"
+   },
+   "birthCountry": "USA",
+   "birthStateProvince": {
+    "default": "NJ"
+   }
+  }
+ ]
+}

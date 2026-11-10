@@ -1,0 +1,115 @@
+# Private grader sidecar for `vgi-lint simulate` (and `lint`'s VGI520 coverage). The worker
+# publishes only task names + prompts in `vgi.agent_test_tasks` (vgi_nhl/worker.py); these
+# grader fields are keyed by that name and never sent to the analyst agent.
+#
+# Grading uses the strongest oracle present: reference_sql (exact result-set compare) ->
+# check_sql (boolean assertion) -> success_criteria (LLM judge). Every task here uses a
+# deterministic check_sql and deliberately OMITS reference_sql: NHL data is live (standings,
+# scores, and leaderboards move daily) and a free-form analyst rarely reproduces a reference
+# query's exact column/row shape, while a reference_sql would win over check_sql. Historical
+# tasks pin season 20252026, game 2025020001, and other settled facts. check_sql also drives
+# object coverage; success_criteria records what a correct answer looks like.
+tasks:
+  - name: division_leaders
+    check_sql: >-
+      SELECT (SELECT count(*) FROM nhl.main.current_standings WHERE division_rank = 1) = 4
+        AND (SELECT standings_start FROM nhl.main.standings_seasons WHERE season = 20252026)
+            = DATE '2025-10-07'
+    success_criteria: >-
+      Names one leading team and its points for each of the four divisions from
+      current_standings, and states that 2025-26 standings began on 2025-10-07.
+
+  - name: league_snapshot
+    check_sql: >-
+      SELECT (SELECT count(*) = count(DISTINCT game_id) FROM nhl.main.current_scores)
+        AND (SELECT count(*) = count(DISTINCT game_id) FROM nhl.main.current_schedule)
+        AND (SELECT count(*) FROM nhl.main.current_skater_leaders WHERE category = 'points' AND rank = 1) = 1
+        AND (SELECT count(*) FROM nhl.main.current_goalie_leaders WHERE category = 'wins' AND rank = 1) = 1
+    success_criteria: >-
+      Lists today's games from current_scores, counts this week's games from
+      current_schedule, and names the current points leader and goalie wins leader.
+
+  - name: opener_recap
+    check_sql: >-
+      SELECT (SELECT home_score = 3 AND away_score = 2 AND home_team_abbrev = 'FLA'
+              FROM nhl.main.scores(date := DATE '2025-10-07') WHERE game_id = 2025020001)
+        AND (SELECT sum(goals) FROM nhl.main.box_score(2025020001)) = 5
+        AND (SELECT saves FROM nhl.main.box_score_goalies(2025020001) WHERE decision = 'W') = 17
+        AND (SELECT count(*) FROM nhl.main.schedule(date := DATE '2025-10-07')) = 48
+    success_criteria: >-
+      Reports Florida 3, Chicago 2, the five goal scorers (Nazar, Greer, Verhaeghe,
+      Teravainen, Boqvist), Sergei Bobrovsky's 17 saves, and 48 games in the opening week.
+
+  - name: opener_shots_and_ice_time
+    check_sql: >-
+      SELECT (SELECT count(*) FROM nhl.main.play_by_play(2025020001)
+              WHERE event_type IN ('goal', 'shot-on-goal') AND event_owner_team_abbrev = 'FLA') = 37
+        AND (SELECT count(*) FROM nhl.main.play_by_play(2025020001)
+             WHERE event_type IN ('goal', 'shot-on-goal') AND event_owner_team_abbrev = 'CHI') = 19
+        AND (SELECT sum(duration_seconds) FROM nhl.main.shift_chart(2025020001)
+             WHERE player_id = 8475683) = 3600
+    success_criteria: >-
+      Counts 37 Florida and 19 Chicago shots on goal (shots plus goals) from play_by_play
+      and uses shift_chart totals to identify the player with the most ice time.
+
+  - name: mcdavid_season_and_career
+    check_sql: >-
+      SELECT (SELECT count(*) FROM nhl.main.player_search('mcdavid') WHERE player_id = 8478402) = 1
+        AND (SELECT career_points >= 1268 FROM nhl.main.player(8478402))
+        AND (SELECT points FROM nhl.main.skater_stats(season := 20252026) WHERE player_id = 8478402) = 138
+        AND (SELECT sum(points) FROM nhl.main.player_game_log(8478402, season := 20252026)) = 138
+        AND (SELECT points FROM nhl.main.player_career(8478402)
+             WHERE season = 20252026 AND league_abbrev = 'NHL' AND game_type = 2) = 138
+    success_criteria: >-
+      Finds player id 8478402, reports 138 points in 2025-26, identifies his best game from
+      player_game_log, and lists NHL regular-season points per season from player_career.
+
+  - name: skater_leaders_2025_26
+    check_sql: >-
+      SELECT (SELECT player_id FROM nhl.main.skater_realtime_stats(season := 20252026)
+              ORDER BY hits DESC LIMIT 1) = 8478508
+        AND (SELECT player_name FROM nhl.main.skater_leaders(season := 20252026, category := 'goals')
+             WHERE rank = 1) = 'Nathan MacKinnon'
+    success_criteria: >-
+      Names Yakov Trenin as the 2025-26 hits leader and lists the official top five goal
+      scorers led by Nathan MacKinnon (53).
+
+  - name: goalies_2025_26
+    check_sql: >-
+      SELECT (SELECT player_id FROM nhl.main.goalie_stats(season := 20252026)
+              WHERE games_played >= 40 ORDER BY save_pct DESC LIMIT 1) = 8475809
+        AND (SELECT player_name FROM nhl.main.goalie_leaders(season := 20252026, category := 'shutouts')
+             WHERE rank = 1) = 'Ilya Sorokin'
+    success_criteria: >-
+      Names Scott Wedgewood as the best save percentage among 40-game goalies and Ilya
+      Sorokin as the 2025-26 shutouts leader.
+
+  - name: maple_leafs_2025_26
+    check_sql: >-
+      SELECT (SELECT count(*) FROM nhl.main.team_schedule('TOR', season := 20252026)
+              WHERE game_type = 2 AND home_team_abbrev = 'TOR') = 41
+        AND (SELECT round(power_play_pct, 3) FROM nhl.main.team_stats(season := 20252026)
+             WHERE team_id = 10) = 0.213
+        AND (SELECT count(*) FROM nhl.main.roster('TOR', season := 20252026)
+             WHERE position_group = 'goalies' AND player_id = 8476932) = 1
+    success_criteria: >-
+      Derives Toronto's 41-game home record from team_schedule, reports a 21.3% power play
+      from team_stats, and lists the roster goalies including Anthony Stolarz.
+
+  - name: champions_and_division_winner
+    check_sql: >-
+      SELECT (SELECT winning_team_id FROM nhl.main.playoff_bracket(2025) WHERE series_abbrev = 'SCF') = 13
+        AND (SELECT team_abbrev FROM nhl.main.standings(date := DATE '2024-04-18')
+             WHERE division_name = 'Atlantic' AND division_rank = 1) = 'FLA'
+    success_criteria: >-
+      States the Florida Panthers won the 2025 Stanley Cup over the Edmonton Oilers and
+      that Florida also won the Atlantic Division in 2023-24.
+
+  - name: first_overall_franchise
+    check_sql: >-
+      SELECT (SELECT player_name FROM nhl.main.draft_picks(2025) WHERE overall_pick = 1) = 'Matthew Schaefer'
+        AND (SELECT count(*) FROM nhl.main.teams t JOIN nhl.main.franchises f USING (franchise_id)
+             WHERE t.team_id = 2 AND f.common_name = 'Islanders') = 1
+    success_criteria: >-
+      Names Matthew Schaefer, drafted by the New York Islanders, and lists the franchise's
+      team names from the teams and franchises tables.

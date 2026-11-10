@@ -1,0 +1,792 @@
+{
+ "id": 2025020001,
+ "season": 20252026,
+ "gameType": 2,
+ "limitedScoring": false,
+ "gameDate": "2025-10-07",
+ "venue": {
+  "default": "Amerant Bank Arena"
+ },
+ "venueLocation": {
+  "default": "Sunrise"
+ },
+ "startTimeUTC": "2025-10-07T21:00:00Z",
+ "easternUTCOffset": "-04:00",
+ "venueUTCOffset": "-04:00",
+ "gameState": "OFF",
+ "gameScheduleState": "OK",
+ "periodDescriptor": {
+  "number": 3,
+  "periodType": "REG",
+  "maxRegulationPeriods": 3
+ },
+ "awayTeam": {
+  "id": 16,
+  "commonName": {
+   "default": "Blackhawks"
+  },
+  "abbrev": "CHI",
+  "score": 2,
+  "sog": 19,
+  "logo": "https://assets.nhle.com/logos/nhl/svg/CHI_light.svg?season=20252026",
+  "darkLogo": "https://assets.nhle.com/logos/nhl/svg/CHI_dark.svg?season=20252026",
+  "placeName": {
+   "default": "Chicago"
+  },
+  "placeNameWithPreposition": {
+   "default": "Chicago",
+   "fr": "de Chicago"
+  }
+ },
+ "homeTeam": {
+  "id": 13,
+  "commonName": {
+   "default": "Panthers"
+  },
+  "abbrev": "FLA",
+  "score": 3,
+  "sog": 37,
+  "logo": "https://assets.nhle.com/logos/nhl/svg/FLA_light.svg",
+  "darkLogo": "https://assets.nhle.com/logos/nhl/svg/FLA_dark.svg",
+  "placeName": {
+   "default": "Florida",
+   "fr": "Floride"
+  },
+  "placeNameWithPreposition": {
+   "default": "Florida",
+   "fr": "de la Floride"
+  }
+ },
+ "shootoutInUse": true,
+ "otInUse": true,
+ "clock": {
+  "timeRemaining": "00:00",
+  "secondsRemaining": 0,
+  "running": false,
+  "inIntermission": false
+ },
+ "displayPeriod": 1,
+ "maxPeriods": 5,
+ "gameOutcome": {
+  "lastPeriodType": "REG"
+ },
+ "plays": [
+  {
+   "eventId": 52,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "00:00",
+   "timeRemaining": "20:00",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 520,
+   "typeDescKey": "period-start",
+   "sortOrder": 8
+  },
+  {
+   "eventId": 51,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "00:00",
+   "timeRemaining": "20:00",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 502,
+   "typeDescKey": "faceoff",
+   "sortOrder": 11,
+   "details": {
+    "eventOwnerTeamId": 16,
+    "losingPlayerId": 8477935,
+    "winningPlayerId": 8477450,
+    "xCoord": 0,
+    "yCoord": 0,
+    "zoneCode": "N"
+   }
+  },
+  {
+   "eventId": 101,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "00:22",
+   "timeRemaining": "19:38",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 508,
+   "typeDescKey": "blocked-shot",
+   "sortOrder": 12,
+   "details": {
+    "xCoord": -61,
+    "yCoord": 3,
+    "zoneCode": "D",
+    "blockingPlayerId": 8482807,
+    "shootingPlayerId": 8473419,
+    "eventOwnerTeamId": 13,
+    "reason": "blocked"
+   }
+  },
+  {
+   "eventId": 8,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "00:34",
+   "timeRemaining": "19:26",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 516,
+   "typeDescKey": "stoppage",
+   "sortOrder": 13,
+   "details": {
+    "reason": "puck-in-crowd"
+   }
+  },
+  {
+   "eventId": 74,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "00:46",
+   "timeRemaining": "19:14",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 504,
+   "typeDescKey": "giveaway",
+   "sortOrder": 18,
+   "details": {
+    "xCoord": -41,
+    "yCoord": 38,
+    "zoneCode": "O",
+    "eventOwnerTeamId": 13,
+    "playerId": 8482113
+   }
+  },
+  {
+   "eventId": 71,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "01:16",
+   "timeRemaining": "18:44",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 506,
+   "typeDescKey": "shot-on-goal",
+   "sortOrder": 29,
+   "details": {
+    "xCoord": -58,
+    "yCoord": -22,
+    "zoneCode": "O",
+    "shotType": "wrist",
+    "shootingPlayerId": 8478542,
+    "goalieInNetId": 8481519,
+    "eventOwnerTeamId": 13,
+    "awaySOG": 0,
+    "homeSOG": 1
+   }
+  },
+  {
+   "eventId": 80,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "01:44",
+   "timeRemaining": "18:16",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 507,
+   "typeDescKey": "missed-shot",
+   "sortOrder": 38,
+   "details": {
+    "xCoord": 55,
+    "yCoord": -29,
+    "zoneCode": "O",
+    "reason": "hit-crossbar",
+    "shotType": "snap",
+    "shootingPlayerId": 8484144,
+    "goalieInNetId": 8475683,
+    "eventOwnerTeamId": 16
+   }
+  },
+  {
+   "eventId": 164,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "02:15",
+   "timeRemaining": "17:45",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 503,
+   "typeDescKey": "hit",
+   "sortOrder": 45,
+   "details": {
+    "xCoord": 74,
+    "yCoord": 39,
+    "zoneCode": "O",
+    "eventOwnerTeamId": 16,
+    "hittingPlayerId": 8478043,
+    "hitteePlayerId": 8479981
+   }
+  },
+  {
+   "eventId": 168,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "03:11",
+   "timeRemaining": "16:49",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 525,
+   "typeDescKey": "takeaway",
+   "sortOrder": 63,
+   "details": {
+    "xCoord": -33,
+    "yCoord": 18,
+    "zoneCode": "O",
+    "playerId": 8477935,
+    "eventOwnerTeamId": 13
+   }
+  },
+  {
+   "eventId": 218,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "06:58",
+   "timeRemaining": "13:02",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 509,
+   "typeDescKey": "penalty",
+   "sortOrder": 125,
+   "details": {
+    "xCoord": 2,
+    "yCoord": 2,
+    "zoneCode": "N",
+    "typeCode": "MIN",
+    "descKey": "slashing",
+    "duration": 2,
+    "committedByPlayerId": 8484783,
+    "drawnByPlayerId": 8482113,
+    "eventOwnerTeamId": 16
+   }
+  },
+  {
+   "eventId": 258,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "10:03",
+   "timeRemaining": "09:57",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 505,
+   "typeDescKey": "goal",
+   "sortOrder": 166,
+   "details": {
+    "xCoord": 66,
+    "yCoord": -1,
+    "zoneCode": "O",
+    "shotType": "snap",
+    "scoringPlayerId": 8483493,
+    "scoringPlayerTotal": 1,
+    "assist1PlayerId": 8477479,
+    "assist1PlayerTotal": 1,
+    "assist2PlayerId": 8476882,
+    "assist2PlayerTotal": 1,
+    "eventOwnerTeamId": 16,
+    "goalieInNetId": 8475683,
+    "awayScore": 1,
+    "homeScore": 0,
+    "highlightClipSharingUrl": "https://nhl.com/video/chi-fla-nazar-scores-goal-against-sergei-bobrovsky-6382220522112",
+    "highlightClip": 6382220522112,
+    "discreteClip": 6382219551112
+   },
+   "pptReplayUrl": "https://wsr.nhle.com/sprites/20252026/2025020001/ev258.json"
+  },
+  {
+   "eventId": 274,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "11:06",
+   "timeRemaining": "08:54",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 505,
+   "typeDescKey": "goal",
+   "sortOrder": 184,
+   "details": {
+    "xCoord": -79,
+    "yCoord": 1,
+    "zoneCode": "O",
+    "shotType": "wrist",
+    "scoringPlayerId": 8478421,
+    "scoringPlayerTotal": 1,
+    "assist1PlayerId": 8479981,
+    "assist1PlayerTotal": 1,
+    "assist2PlayerId": 8478055,
+    "assist2PlayerTotal": 1,
+    "eventOwnerTeamId": 13,
+    "goalieInNetId": 8481519,
+    "awayScore": 1,
+    "homeScore": 1,
+    "highlightClipSharingUrl": "https://nhl.com/video/chi-fla-greer-scores-goal-against-spencer-knight-6382220921112",
+    "highlightClip": 6382220921112,
+    "discreteClip": 6382219286112
+   },
+   "pptReplayUrl": "https://wsr.nhle.com/sprites/20252026/2025020001/ev274.json"
+  },
+  {
+   "eventId": 366,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "14:08",
+   "timeRemaining": "05:52",
+   "situationCode": "1451",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 505,
+   "typeDescKey": "goal",
+   "sortOrder": 222,
+   "details": {
+    "xCoord": -84,
+    "yCoord": 10,
+    "zoneCode": "O",
+    "shotType": "snap",
+    "scoringPlayerId": 8477409,
+    "scoringPlayerTotal": 1,
+    "assist1PlayerId": 8482713,
+    "assist1PlayerTotal": 1,
+    "eventOwnerTeamId": 13,
+    "goalieInNetId": 8481519,
+    "awayScore": 1,
+    "homeScore": 2,
+    "highlightClipSharingUrl": "https://nhl.com/video/chi-fla-verhaeghe-scores-ppg-against-spencer-knight-6382219871112",
+    "highlightClip": 6382219871112,
+    "discreteClip": 6382219382112
+   },
+   "pptReplayUrl": "https://wsr.nhle.com/sprites/20252026/2025020001/ev366.json"
+  },
+  {
+   "eventId": 31,
+   "periodDescriptor": {
+    "number": 1,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "20:00",
+   "timeRemaining": "00:00",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 521,
+   "typeDescKey": "period-end",
+   "sortOrder": 318
+  },
+  {
+   "eventId": 630,
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "01:09",
+   "timeRemaining": "18:51",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "left",
+   "typeCode": 505,
+   "typeDescKey": "goal",
+   "sortOrder": 340,
+   "details": {
+    "xCoord": -63,
+    "yCoord": -15,
+    "zoneCode": "O",
+    "shotType": "wrist",
+    "scoringPlayerId": 8476882,
+    "scoringPlayerTotal": 1,
+    "assist1PlayerId": 8483493,
+    "assist1PlayerTotal": 1,
+    "assist2PlayerId": 8477479,
+    "assist2PlayerTotal": 2,
+    "eventOwnerTeamId": 16,
+    "goalieInNetId": 8475683,
+    "awayScore": 2,
+    "homeScore": 2,
+    "highlightClipSharingUrl": "https://nhl.com/video/chi-fla-teravainen-scores-goal-against-sergei-bobrovsky-6382221596112",
+    "highlightClip": 6382221596112,
+    "discreteClip": 6382223153112
+   },
+   "pptReplayUrl": "https://wsr.nhle.com/sprites/20252026/2025020001/ev630.json"
+  },
+  {
+   "eventId": 45,
+   "periodDescriptor": {
+    "number": 2,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "08:14",
+   "timeRemaining": "11:46",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "left",
+   "typeCode": 535,
+   "typeDescKey": "delayed-penalty",
+   "sortOrder": 430,
+   "details": {
+    "eventOwnerTeamId": 13
+   }
+  },
+  {
+   "eventId": 1101,
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "09:40",
+   "timeRemaining": "10:20",
+   "situationCode": "1551",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 505,
+   "typeDescKey": "goal",
+   "sortOrder": 729,
+   "details": {
+    "xCoord": -80,
+    "yCoord": 3,
+    "zoneCode": "O",
+    "shotType": "deflected",
+    "scoringPlayerId": 8480003,
+    "scoringPlayerTotal": 1,
+    "assist1PlayerId": 8482713,
+    "assist1PlayerTotal": 2,
+    "assist2PlayerId": 8478542,
+    "assist2PlayerTotal": 1,
+    "eventOwnerTeamId": 13,
+    "goalieInNetId": 8481519,
+    "awayScore": 2,
+    "homeScore": 3,
+    "highlightClipSharingUrl": "https://nhl.com/video/chi-fla-boqvist-scores-goal-against-spencer-knight-6382227600112",
+    "highlightClip": 6382227600112,
+    "discreteClip": 6382227215112
+   },
+   "pptReplayUrl": "https://wsr.nhle.com/sprites/20252026/2025020001/ev1101.json"
+  },
+  {
+   "eventId": 584,
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "timeInPeriod": "20:00",
+   "timeRemaining": "00:00",
+   "situationCode": "0651",
+   "homeTeamDefendingSide": "right",
+   "typeCode": 524,
+   "typeDescKey": "game-end",
+   "sortOrder": 872
+  }
+ ],
+ "rosterSpots": [
+  {
+   "teamId": 13,
+   "playerId": 8473419,
+   "firstName": {
+    "default": "Brad"
+   },
+   "lastName": {
+    "default": "Marchand"
+   },
+   "sweaterNumber": 63,
+   "positionCode": "L",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8473419.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8475683,
+   "firstName": {
+    "default": "Sergei",
+    "cs": "Sergej",
+    "sk": "Sergej"
+   },
+   "lastName": {
+    "default": "Bobrovsky",
+    "cs": "Bobrovskij",
+    "fi": "Bobrovski",
+    "sk": "Bobrovskij"
+   },
+   "sweaterNumber": 72,
+   "positionCode": "G",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8475683.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8476882,
+   "firstName": {
+    "default": "Teuvo"
+   },
+   "lastName": {
+    "default": "Teravainen",
+    "cs": "Teräväinen",
+    "fi": "Teräväinen",
+    "sk": "Teräväinen",
+    "sv": "Teräväinen"
+   },
+   "sweaterNumber": 86,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8476882.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8477409,
+   "firstName": {
+    "default": "Carter"
+   },
+   "lastName": {
+    "default": "Verhaeghe"
+   },
+   "sweaterNumber": 23,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8477409.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8477450,
+   "firstName": {
+    "default": "Jason"
+   },
+   "lastName": {
+    "default": "Dickinson"
+   },
+   "sweaterNumber": 16,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8477450.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8477479,
+   "firstName": {
+    "default": "Tyler"
+   },
+   "lastName": {
+    "default": "Bertuzzi"
+   },
+   "sweaterNumber": 59,
+   "positionCode": "L",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8477479.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8477935,
+   "firstName": {
+    "default": "Sam"
+   },
+   "lastName": {
+    "default": "Bennett"
+   },
+   "sweaterNumber": 9,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8477935.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8478043,
+   "firstName": {
+    "default": "Sam"
+   },
+   "lastName": {
+    "default": "Lafferty"
+   },
+   "sweaterNumber": 24,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8478043.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8478055,
+   "firstName": {
+    "default": "Gustav"
+   },
+   "lastName": {
+    "default": "Forsling"
+   },
+   "sweaterNumber": 42,
+   "positionCode": "D",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8478055.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8478421,
+   "firstName": {
+    "default": "A.J."
+   },
+   "lastName": {
+    "default": "Greer"
+   },
+   "sweaterNumber": 10,
+   "positionCode": "L",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8478421.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8478542,
+   "firstName": {
+    "default": "Evan"
+   },
+   "lastName": {
+    "default": "Rodrigues"
+   },
+   "sweaterNumber": 17,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8478542.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8479981,
+   "firstName": {
+    "default": "Jonah"
+   },
+   "lastName": {
+    "default": "Gadjovich"
+   },
+   "sweaterNumber": 12,
+   "positionCode": "L",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8479981.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8480003,
+   "firstName": {
+    "default": "Jesper"
+   },
+   "lastName": {
+    "default": "Boqvist"
+   },
+   "sweaterNumber": 70,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8480003.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8481519,
+   "firstName": {
+    "default": "Spencer"
+   },
+   "lastName": {
+    "default": "Knight"
+   },
+   "sweaterNumber": 30,
+   "positionCode": "G",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8481519.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8482113,
+   "firstName": {
+    "default": "Anton"
+   },
+   "lastName": {
+    "default": "Lundell"
+   },
+   "sweaterNumber": 15,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8482113.png"
+  },
+  {
+   "teamId": 13,
+   "playerId": 8482713,
+   "firstName": {
+    "default": "Mackie"
+   },
+   "lastName": {
+    "default": "Samoskevich"
+   },
+   "sweaterNumber": 11,
+   "positionCode": "R",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/FLA/8482713.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8482807,
+   "firstName": {
+    "default": "Ethan"
+   },
+   "lastName": {
+    "default": "Del Mastro"
+   },
+   "sweaterNumber": 38,
+   "positionCode": "D",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8482807.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8483493,
+   "firstName": {
+    "default": "Frank"
+   },
+   "lastName": {
+    "default": "Nazar"
+   },
+   "sweaterNumber": 91,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8483493.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8484144,
+   "firstName": {
+    "default": "Connor"
+   },
+   "lastName": {
+    "default": "Bedard"
+   },
+   "sweaterNumber": 98,
+   "positionCode": "C",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8484144.png"
+  },
+  {
+   "teamId": 16,
+   "playerId": 8484783,
+   "firstName": {
+    "default": "Artyom"
+   },
+   "lastName": {
+    "default": "Levshunov"
+   },
+   "sweaterNumber": 55,
+   "positionCode": "D",
+   "headshot": "https://assets.nhle.com/mugs/nhl/20252026/CHI/8484783.png"
+  }
+ ],
+ "regPeriods": 3
+}

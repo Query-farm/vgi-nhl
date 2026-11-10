@@ -1,0 +1,257 @@
+{
+ "previousSeason": 20242025,
+ "currentSeason": 20252026,
+ "nextSeason": 20262027,
+ "clubTimezone": "America/Toronto",
+ "clubUTCOffset": "-04:00",
+ "games": [
+  {
+   "id": 2025010010,
+   "season": 20252026,
+   "gameType": 1,
+   "gameDate": "2025-09-21",
+   "venue": {
+    "default": "Canadian Tire Centre",
+    "fr": "Centre Canadian Tire"
+   },
+   "neutralSite": false,
+   "startTimeUTC": "2025-09-21T19:00:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-04:00",
+   "venueTimezone": "US/Eastern",
+   "gameState": "FINAL",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 10,
+    "commonName": {
+     "default": "Maple Leafs"
+    },
+    "placeName": {
+     "default": "Toronto"
+    },
+    "placeNameWithPreposition": {
+     "default": "Toronto",
+     "fr": "de Toronto"
+    },
+    "abbrev": "TOR",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/TOR_dark.svg",
+    "awaySplitSquad": false,
+    "score": 4
+   },
+   "homeTeam": {
+    "id": 9,
+    "commonName": {
+     "default": "Senators",
+     "fr": "Sénateurs"
+    },
+    "placeName": {
+     "default": "Ottawa"
+    },
+    "placeNameWithPreposition": {
+     "default": "Ottawa",
+     "fr": "d'Ottawa"
+    },
+    "abbrev": "OTT",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/OTT_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/OTT_dark.svg",
+    "homeSplitSquad": false,
+    "score": 3
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   },
+   "winningGoalie": {
+    "playerId": 8482515,
+    "firstInitial": {
+     "default": "A."
+    },
+    "lastName": {
+     "default": "Akhtyamov"
+    }
+   },
+   "winningGoalScorer": {
+    "playerId": 8484888,
+    "firstInitial": {
+     "default": "M."
+    },
+    "lastName": {
+     "default": "Barbolini"
+    }
+   },
+   "threeMinRecap": "/video/tor-at-ott-recap-6379896103112",
+   "gameCenterLink": "/gamecenter/tor-vs-ott/2025/09/21/2025010010"
+  },
+  {
+   "id": 2025020004,
+   "season": 20252026,
+   "gameType": 2,
+   "gameDate": "2025-10-08",
+   "venue": {
+    "default": "Scotiabank Arena"
+   },
+   "neutralSite": false,
+   "startTimeUTC": "2025-10-08T23:00:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-04:00",
+   "venueTimezone": "America/Toronto",
+   "gameState": "OFF",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 8,
+    "commonName": {
+     "default": "Canadiens"
+    },
+    "placeName": {
+     "default": "Montréal"
+    },
+    "placeNameWithPreposition": {
+     "default": "Montréal",
+     "fr": "de Montréal"
+    },
+    "abbrev": "MTL",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/MTL_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/MTL_dark.svg",
+    "awaySplitSquad": false,
+    "score": 2
+   },
+   "homeTeam": {
+    "id": 10,
+    "commonName": {
+     "default": "Maple Leafs"
+    },
+    "placeName": {
+     "default": "Toronto"
+    },
+    "placeNameWithPreposition": {
+     "default": "Toronto",
+     "fr": "de Toronto"
+    },
+    "abbrev": "TOR",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/TOR_dark.svg",
+    "homeSplitSquad": false,
+    "hotelLink": "https://www.marriott.com/search/findHotels.mi?destinationAddress.destination=SCOTIABANK+ARENA,+TORONTO,+CANADA&cid=DIS_GLB0006YJ8_GLE000GVLH_GLF00156FN",
+    "hotelDesc": "Stay at Marriott",
+    "score": 5
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   },
+   "winningGoalie": {
+    "playerId": 8476932,
+    "firstInitial": {
+     "default": "A."
+    },
+    "lastName": {
+     "default": "Stolarz"
+    }
+   },
+   "winningGoalScorer": {
+    "playerId": 8476853,
+    "firstInitial": {
+     "default": "M."
+    },
+    "lastName": {
+     "default": "Rielly"
+    }
+   },
+   "threeMinRecap": "/video/mtl-at-tor-recap-6382420464112",
+   "condensedGameFr": "/fr/video/match-condense-canadiens-maple-leafs-08-10-2025-6382421350112",
+   "gameCenterLink": "/gamecenter/mtl-vs-tor/2025/10/08/2025020004"
+  },
+  {
+   "id": 2025020025,
+   "season": 20252026,
+   "gameType": 2,
+   "gameDate": "2025-10-11",
+   "venue": {
+    "default": "Little Caesars Arena"
+   },
+   "neutralSite": false,
+   "startTimeUTC": "2025-10-11T23:00:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-04:00",
+   "venueTimezone": "America/Detroit",
+   "gameState": "OFF",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 10,
+    "commonName": {
+     "default": "Maple Leafs"
+    },
+    "placeName": {
+     "default": "Toronto"
+    },
+    "placeNameWithPreposition": {
+     "default": "Toronto",
+     "fr": "de Toronto"
+    },
+    "abbrev": "TOR",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/TOR_dark.svg",
+    "awaySplitSquad": false,
+    "hotelLink": "https://marriott.com/search/findHotels.mi?destinationAddress.destination=LITTLE+CAESARS+ARENA,+DETROIT,+MICHIGAN,+USA&cid=DIS_GLB0006YJ8_GLE000GVLH_GLF00157FN",
+    "hotelDesc": "Stay at Marriott",
+    "score": 3
+   },
+   "homeTeam": {
+    "id": 17,
+    "commonName": {
+     "default": "Red Wings"
+    },
+    "placeName": {
+     "default": "Detroit"
+    },
+    "placeNameWithPreposition": {
+     "default": "Detroit",
+     "fr": "de Detroit"
+    },
+    "abbrev": "DET",
+    "logo": "https://assets.nhle.com/logos/nhl/svg/DET_light.svg?season=20252026",
+    "darkLogo": "https://assets.nhle.com/logos/nhl/svg/DET_dark.svg?season=20252026",
+    "homeSplitSquad": false,
+    "score": 6
+   },
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   },
+   "winningGoalie": {
+    "playerId": 8475660,
+    "firstInitial": {
+     "default": "C."
+    },
+    "lastName": {
+     "default": "Talbot"
+    }
+   },
+   "winningGoalScorer": {
+    "playerId": 8482078,
+    "firstInitial": {
+     "default": "L."
+    },
+    "lastName": {
+     "default": "Raymond"
+    }
+   },
+   "threeMinRecap": "/video/tor-at-det-recap-6382637668112",
+   "condensedGame": "/video/tor-at-det-condensed-game-6382638754112",
+   "gameCenterLink": "/gamecenter/tor-vs-det/2025/10/11/2025020025"
+  }
+ ]
+}

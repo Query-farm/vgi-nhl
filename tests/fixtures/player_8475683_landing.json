@@ -1,0 +1,147 @@
+{
+ "playerId": 8475683,
+ "isActive": true,
+ "currentTeamId": 10,
+ "currentTeamAbbrev": "TOR",
+ "fullTeamName": {
+  "default": "Toronto Maple Leafs",
+  "fr": "Maple Leafs de Toronto"
+ },
+ "teamCommonName": {
+  "default": "Maple Leafs"
+ },
+ "teamPlaceNameWithPreposition": {
+  "default": "Toronto",
+  "fr": "de Toronto"
+ },
+ "firstName": {
+  "default": "Sergei",
+  "cs": "Sergej",
+  "sk": "Sergej"
+ },
+ "lastName": {
+  "default": "Bobrovsky",
+  "cs": "Bobrovskij",
+  "fi": "Bobrovski",
+  "sk": "Bobrovskij"
+ },
+ "teamLogo": "https://assets.nhle.com/logos/nhl/svg/TOR_light.svg",
+ "sweaterNumber": 72,
+ "position": "G",
+ "headshot": "https://assets.nhle.com/mugs/nhl/20262027/TOR/8475683.png",
+ "heightInInches": 74,
+ "heightInCentimeters": 188,
+ "weightInPounds": 187,
+ "weightInKilograms": 85,
+ "birthDate": "1988-09-20",
+ "birthCity": {
+  "default": "Novokuznetsk",
+  "cs": "Novokuzněck",
+  "sk": "Novokuzněck"
+ },
+ "birthCountry": "RUS",
+ "shootsCatches": "L",
+ "playerSlug": "sergei-bobrovsky-8475683",
+ "inTop100AllTime": 0,
+ "inHHOF": 0,
+ "featuredStats": {
+  "season": 20262027,
+  "regularSeason": {
+   "subSeason": {
+    "gamesPlayed": 12,
+    "goalsAgainstAvg": 3.338976,
+    "losses": 7,
+    "otLosses": 2,
+    "savePctg": 0.886364,
+    "shutouts": 0,
+    "wins": 3
+   },
+   "career": {
+    "gamesPlayed": 818,
+    "goalsAgainstAvg": 2.618212,
+    "losses": 273,
+    "otLosses": 60,
+    "savePctg": 0.911873,
+    "shutouts": 53,
+    "wins": 459
+   }
+  }
+ },
+ "careerTotals": {
+  "regularSeason": {
+   "assists": 15,
+   "gamesPlayed": 818,
+   "gamesStarted": 803,
+   "goals": 0,
+   "goalsAgainst": 2062,
+   "goalsAgainstAvg": 2.618212,
+   "losses": 273,
+   "otLosses": 60,
+   "pim": 45,
+   "savePctg": 0.911873,
+   "shotsAgainst": 23398,
+   "shutouts": 53,
+   "timeOnIce": "47253:35",
+   "wins": 459
+  },
+  "playoffs": {
+   "assists": 2,
+   "gamesPlayed": 117,
+   "gamesStarted": 111,
+   "goals": 0,
+   "goalsAgainst": 313,
+   "goalsAgainstAvg": 2.713284,
+   "losses": 50,
+   "otLosses": 0,
+   "pim": 2,
+   "savePctg": 0.907067,
+   "shotsAgainst": 3368,
+   "shutouts": 6,
+   "timeOnIce": "6921:30",
+   "wins": 61
+  }
+ },
+ "seasonTotals": [
+  {
+   "gameTypeId": 2,
+   "gamesPlayed": 9,
+   "leagueAbbrev": "Russia3",
+   "season": 20042005,
+   "sequence": 19050,
+   "teamName": {
+    "default": "Metallurg Novokuznetsk-2"
+   }
+  },
+  {
+   "assists": 2,
+   "gameTypeId": 2,
+   "gamesPlayed": 52,
+   "gamesStarted": 51,
+   "goals": 0,
+   "goalsAgainst": 154,
+   "goalsAgainstAvg": 3.070124,
+   "leagueAbbrev": "NHL",
+   "losses": 23,
+   "otLosses": 1,
+   "pim": 9,
+   "savePctg": 0.8768,
+   "season": 20252026,
+   "sequence": 1,
+   "shotsAgainst": 1250,
+   "shutouts": 4,
+   "teamCommonName": {
+    "default": "Panthers"
+   },
+   "teamName": {
+    "default": "Florida Panthers",
+    "fr": "Panthers de la Floride"
+   },
+   "teamPlaceNameWithPreposition": {
+    "default": "Florida",
+    "fr": "de la Floride"
+   },
+   "timeOnIce": "3009:39",
+   "wins": 27
+  }
+ ]
+}

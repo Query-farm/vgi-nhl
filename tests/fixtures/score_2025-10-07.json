@@ -1,0 +1,176 @@
+{
+ "prevDate": "2025-10-04",
+ "currentDate": "2025-10-07",
+ "nextDate": "2025-10-08",
+ "gameWeek": [
+  {
+   "date": "2025-10-04",
+   "dayAbbrev": "SAT",
+   "numberOfGames": 11
+  }
+ ],
+ "games": [
+  {
+   "id": 2025020001,
+   "season": 20252026,
+   "gameType": 2,
+   "gameDate": "2025-10-07",
+   "venue": {
+    "default": "Amerant Bank Arena"
+   },
+   "startTimeUTC": "2025-10-07T21:00:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-04:00",
+   "gameState": "OFF",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 16,
+    "name": {
+     "default": "Blackhawks"
+    },
+    "abbrev": "CHI",
+    "score": 2,
+    "sog": 19,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/CHI_light.svg?season=20252026"
+   },
+   "homeTeam": {
+    "id": 13,
+    "name": {
+     "default": "Panthers"
+    },
+    "abbrev": "FLA",
+    "score": 3,
+    "sog": 37,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/FLA_light.svg"
+   },
+   "gameCenterLink": "/gamecenter/chi-vs-fla/2025/10/07/2025020001",
+   "threeMinRecap": "/video/chi-at-fla-recap-6382227954112",
+   "clock": {
+    "timeRemaining": "00:00",
+    "secondsRemaining": 0,
+    "running": false,
+    "inIntermission": false
+   },
+   "neutralSite": false,
+   "venueTimezone": "US/Eastern",
+   "period": 3,
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   }
+  },
+  {
+   "id": 2025020002,
+   "season": 20252026,
+   "gameType": 2,
+   "gameDate": "2025-10-07",
+   "venue": {
+    "default": "Madison Square Garden"
+   },
+   "startTimeUTC": "2025-10-08T00:00:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-04:00",
+   "gameState": "OFF",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 5,
+    "name": {
+     "default": "Penguins"
+    },
+    "abbrev": "PIT",
+    "score": 3,
+    "sog": 31,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/PIT_light.svg"
+   },
+   "homeTeam": {
+    "id": 3,
+    "name": {
+     "default": "Rangers"
+    },
+    "abbrev": "NYR",
+    "score": 0,
+    "sog": 25,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/NYR_light.svg"
+   },
+   "gameCenterLink": "/gamecenter/pit-vs-nyr/2025/10/07/2025020002",
+   "threeMinRecap": "/video/pit-at-nyr-recap-6382236256112",
+   "condensedGame": "/video/pit-at-nyr-condensed-game-6382237336112",
+   "condensedGameFr": "/fr/video/match-condense-penguins-rangers-07-10-2025-6382238500112",
+   "clock": {
+    "timeRemaining": "00:00",
+    "secondsRemaining": 0,
+    "running": false,
+    "inIntermission": false
+   },
+   "neutralSite": false,
+   "venueTimezone": "America/New_York",
+   "period": 3,
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   }
+  },
+  {
+   "id": 2025020003,
+   "season": 20252026,
+   "gameType": 2,
+   "gameDate": "2025-10-07",
+   "venue": {
+    "default": "Crypto.com Arena"
+   },
+   "startTimeUTC": "2025-10-08T02:30:00Z",
+   "easternUTCOffset": "-04:00",
+   "venueUTCOffset": "-07:00",
+   "gameState": "OFF",
+   "gameScheduleState": "OK",
+   "awayTeam": {
+    "id": 21,
+    "name": {
+     "default": "Avalanche"
+    },
+    "abbrev": "COL",
+    "score": 4,
+    "sog": 23,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/COL_light.svg"
+   },
+   "homeTeam": {
+    "id": 26,
+    "name": {
+     "default": "Kings"
+    },
+    "abbrev": "LAK",
+    "score": 1,
+    "sog": 25,
+    "logo": "https://assets.nhle.com/logos/nhl/svg/LAK_light.svg"
+   },
+   "gameCenterLink": "/gamecenter/col-vs-lak/2025/10/07/2025020003",
+   "threeMinRecap": "/video/col-at-lak-recap-6382249040112",
+   "condensedGameFr": "/fr/video/match-condense-avalanche-kings-07-10-2025-6382249135112",
+   "clock": {
+    "timeRemaining": "00:00",
+    "secondsRemaining": 0,
+    "running": false,
+    "inIntermission": false
+   },
+   "neutralSite": false,
+   "venueTimezone": "America/Los_Angeles",
+   "period": 3,
+   "periodDescriptor": {
+    "number": 3,
+    "periodType": "REG",
+    "maxRegulationPeriods": 3
+   },
+   "gameOutcome": {
+    "lastPeriodType": "REG"
+   }
+  }
+ ]
+}

@@ -1,0 +1,23 @@
+{
+ "data": [
+  {
+   "id": 27,
+   "fullName": "Colorado Avalanche",
+   "teamCommonName": "Avalanche",
+   "teamPlaceName": "Colorado"
+  },
+  {
+   "id": 1,
+   "fullName": "Montréal Canadiens",
+   "teamCommonName": "Canadiens",
+   "teamPlaceName": "Montréal"
+  },
+  {
+   "id": 22,
+   "fullName": "New York Islanders",
+   "teamCommonName": "Islanders",
+   "teamPlaceName": "New York"
+  }
+ ],
+ "total": 3
+}

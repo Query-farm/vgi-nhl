@@ -1,0 +1,42 @@
+[
+ {
+  "playerId": "8457287",
+  "name": "Brian McDavid",
+  "positionCode": "D",
+  "teamId": null,
+  "teamAbbrev": null,
+  "lastTeamId": null,
+  "lastTeamAbbrev": null,
+  "lastSeasonId": null,
+  "sweaterNumber": null,
+  "active": false,
+  "height": "6'1\"",
+  "heightInInches": 73,
+  "heightInCentimeters": 185,
+  "weightInPounds": 190,
+  "weightInKilograms": 86,
+  "birthCity": "Sudbury",
+  "birthStateProvince": "ON",
+  "birthCountry": "CAN"
+ },
+ {
+  "playerId": "8478402",
+  "name": "Connor McDavid",
+  "positionCode": "C",
+  "teamId": "22",
+  "teamAbbrev": "EDM",
+  "lastTeamId": "22",
+  "lastTeamAbbrev": "EDM",
+  "lastSeasonId": "20262027",
+  "sweaterNumber": 97,
+  "active": true,
+  "height": "6'2\"",
+  "heightInInches": 74,
+  "heightInCentimeters": 188,
+  "weightInPounds": 190,
+  "weightInKilograms": 86,
+  "birthCity": "Richmond Hill",
+  "birthStateProvince": "ON",
+  "birthCountry": "CAN"
+ }
+]
