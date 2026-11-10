@@ -109,20 +109,44 @@ GAMES_SCHEMA = pa.schema(
         field("game_schedule_state", pa.string(), "Schedule state: OK, PPD postponed, or CNCL cancelled."),
         field("away_team_id", pa.int32(), "NHL team id of the visiting team."),
         field("away_team_abbrev", pa.string(), "Three-letter code of the visiting team."),
-        field("away_team_name", pa.string(), "Name of the visiting team."),
+        field(
+            "away_team_name",
+            pa.string(),
+            "Visiting team nickname, such as Blackhawks; join teams for the full name.",
+        ),
         field("away_score", pa.int32(), "Visiting team goals; NULL before the game starts."),
-        field("away_shots_on_goal", pa.int32(), "Visiting team shots on goal, when reported."),
+        field(
+            "away_shots_on_goal",
+            pa.int32(),
+            "Visiting team shots on goal; only scores() reports it, NULL in schedules.",
+        ),
         field("home_team_id", pa.int32(), "NHL team id of the home team."),
         field("home_team_abbrev", pa.string(), "Three-letter code of the home team."),
-        field("home_team_name", pa.string(), "Name of the home team."),
+        field(
+            "home_team_name",
+            pa.string(),
+            "Home team nickname, such as Panthers; join teams for the full name.",
+        ),
         field("home_score", pa.int32(), "Home team goals; NULL before the game starts."),
-        field("home_shots_on_goal", pa.int32(), "Home team shots on goal, when reported."),
+        field(
+            "home_shots_on_goal",
+            pa.int32(),
+            "Home team shots on goal; only scores() reports it, NULL in schedules.",
+        ),
         field("period", pa.int32(), "Current or final period number (4+ means overtime/shootout)."),
         field("period_type", pa.string(), "Current or final period type: REG, OT, or SO."),
         field("last_period_type", pa.string(), "How a finished game ended: REG, OT, or SO."),
-        field("winning_goalie_id", pa.int32(), "Player id of the winning goalie, after the game."),
+        field(
+            "winning_goalie_id",
+            pa.int32(),
+            "Player id of the winning goalie; schedules only, NULL in scores().",
+        ),
         field("winning_goalie_name", pa.string(), "Winning goalie, as an initial and last name."),
-        field("winning_goal_scorer_id", pa.int32(), "Player id of the game-winning goal scorer."),
+        field(
+            "winning_goal_scorer_id",
+            pa.int32(),
+            "Player id of the game-winning goal scorer; schedules only, NULL in scores().",
+        ),
         field("winning_goal_scorer_name", pa.string(), "Game-winning goal scorer, as initial and last name."),
         field("game_center_url", pa.string(), "NHL.com GameCenter URL for the game."),
     ]
@@ -292,13 +316,8 @@ def flatten_standings_seasons(payload: Mapping[str, Any]) -> list[dict[str, Any]
 
 
 def _team_name(team: Mapping[str, Any]) -> str | None:
-    name = text(team.get("name"))
-    if name:
-        return name
-    place, common = text(team.get("placeName")), text(team.get("commonName"))
-    if place and common:
-        return f"{place} {common}"
-    return common or place
+    """Return the team nickname, which schedule (commonName) and score (name) payloads both carry."""
+    return text(team.get("commonName")) or text(team.get("name"))
 
 
 def _initial_name(player: Mapping[str, Any]) -> str | None:

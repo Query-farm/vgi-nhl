@@ -78,8 +78,8 @@ def test_schedule_week_uses_day_dates() -> None:
     opener = rows[0]
     assert opener["game_date"] == date(2025, 10, 7)
     assert opener["start_time_utc"] == datetime(2025, 10, 7, 21, tzinfo=UTC)
-    assert opener["away_team_name"] == "Chicago Blackhawks"
-    assert opener["home_team_name"] == "Florida Panthers"
+    assert opener["away_team_name"] == "Blackhawks"
+    assert opener["home_team_name"] == "Panthers"
     assert (opener["away_score"], opener["home_score"]) == (2, 3)
     assert opener["winning_goalie_name"] == "S. Bobrovsky"
     assert opener["winning_goal_scorer_id"] == 8480003
@@ -94,6 +94,9 @@ def test_scores_include_shots_and_outcome() -> None:
     assert (opener["away_shots_on_goal"], opener["home_shots_on_goal"]) == (19, 37)
     assert opener["period"] == 3 and opener["last_period_type"] == "REG"
     assert opener["game_state"] == "OFF"
+    # Score payloads carry only the nickname; schedules must agree on the same form.
+    assert (opener["away_team_name"], opener["home_team_name"]) == ("Blackhawks", "Panthers")
+    assert opener["winning_goalie_id"] is None
 
 
 def test_unstarted_games_have_no_period() -> None:
