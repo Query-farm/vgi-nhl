@@ -113,3 +113,30 @@ tasks:
     success_criteria: >-
       Names Matthew Schaefer, drafted by the New York Islanders, and lists the franchise's
       team names from the teams and franchises tables.
+
+  - name: leafs_roster_hits_leader
+    check_sql: >-
+      SELECT (SELECT r.player_id FROM nhl.main.roster('TOR', season := 20252026) r
+              JOIN nhl.main.skater_realtime_stats(season := 20252026) rt USING (player_id)
+              ORDER BY rt.hits DESC LIMIT 1) = 8478057
+        AND (SELECT hits FROM nhl.main.skater_realtime_stats(season := 20252026)
+             WHERE player_id = 8478057) = 195
+        AND (SELECT points FROM nhl.main.skater_stats(season := 20252026)
+             WHERE player_id = 8478057) = 18
+    success_criteria: >-
+      Joins Toronto's 2025-26 roster to the season reports and names Dakota Joshua with 195
+      hits and 18 points.
+
+  - name: opener_ice_time_without_goals
+    check_sql: >-
+      WITH goals AS (SELECT game_seconds FROM nhl.main.play_by_play(2025020001) WHERE event_type = 'goal'),
+           shifts AS (SELECT player_id, start_seconds, end_seconds, duration_seconds
+                      FROM nhl.main.shift_chart(2025020001)),
+           on_ice AS (SELECT DISTINCT s.player_id FROM shifts s JOIN goals g
+                      ON g.game_seconds > s.start_seconds AND g.game_seconds <= s.end_seconds)
+      SELECT (SELECT player_id FROM shifts WHERE player_id NOT IN (SELECT player_id FROM on_ice)
+              GROUP BY player_id ORDER BY sum(duration_seconds) DESC LIMIT 1) = 8484144
+        AND (SELECT sum(duration_seconds) FROM shifts WHERE player_id = 8484144) = 1320
+    success_criteria: >-
+      Matches play_by_play goal times to shift_chart intervals and names Chicago's Connor
+      Bedard, who played 22:00 (1,320 seconds) without being on the ice for any of the five goals.

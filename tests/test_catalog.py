@@ -7,6 +7,9 @@ import re
 from pathlib import Path
 
 from vgi_nhl import league, stats
+from vgi_nhl.games import ON_ICE_GOALS_EXAMPLE
+from vgi_nhl.players import ROSTER_SCORING_EXAMPLE
+from vgi_nhl.stats import POWER_FORWARDS_EXAMPLE
 from vgi_nhl.worker import AGENT_TASKS, NHL_CATALOG
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -108,7 +111,7 @@ def test_catalog_discovery_contract_is_public_and_machine_readable() -> None:
     tasks = json.loads(NHL_CATALOG.tags["vgi.agent_test_tasks"])
     assert examples
     assert all({"name", "description", "sql", "expected_result"} <= example.keys() for example in examples)
-    assert 6 <= len(tasks) <= 10
+    assert 6 <= len(tasks) <= 12
     assert all(set(task) == {"name", "prompt"} for task in tasks)
     assert len({task["name"] for task in tasks}) == len(tasks)
     for key in ("vgi.title", "vgi.subtitle", "vgi.doc_llm", "vgi.doc_md", "vgi.keywords"):
@@ -127,3 +130,20 @@ def test_agent_sidecar_grades_every_task_with_check_sql() -> None:
         function.Meta.name for function in SCHEMA.functions if not function.Meta.name.startswith("all_")
     }
     assert public <= exercised, sorted(public - exercised)
+
+
+def test_composed_examples_reach_schema_and_driving_function() -> None:
+    composed = {
+        "play_by_play": ON_ICE_GOALS_EXAMPLE,
+        "roster": ROSTER_SCORING_EXAMPLE,
+        "skater_stats": POWER_FORWARDS_EXAMPLE,
+    }
+    schema_queries = json.loads(SCHEMA.tags["vgi.example_queries"])
+    functions = {function.Meta.name: function for function in SCHEMA.functions}
+    for name, (description, sql) in composed.items():
+        assert len(set(re.findall(r"nhl\.main\.(\w+)", sql))) >= 2, name
+        assert {"description": description, "sql": sql} in schema_queries
+        # Agents see only the first five examples of each function.
+        first_five = json.loads(functions[name].Meta.tags["vgi.example_queries"])[:5]
+        assert {"description": description, "sql": sql} in first_five, name
+        assert any(example.sql == sql for example in functions[name].Meta.examples[:5]), name

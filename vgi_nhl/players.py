@@ -99,13 +99,24 @@ def _player(player_id: int) -> api.ApiResponse:
     return api.web(f"player/{player_id}/landing")
 
 
+ROSTER_SCORING_EXAMPLE = (
+    "Toronto's 2025-26 roster skaters with their season scoring: roster joined to skater_stats on "
+    "player_id (a traded player's totals cover every club he played for).",
+    "SELECT r.sweater_number, r.player_name, r.position_code, s.games_played, s.goals, s.assists, "
+    "s.points FROM nhl.main.roster('TOR', season := 20252026) r "
+    "JOIN nhl.main.skater_stats(season := 20252026) s USING (player_id) "
+    "WHERE r.position_group <> 'goalies' ORDER BY s.points DESC, r.player_name",
+)
+"""Composed example: a team roster joined to the league-wide season report."""
+
 _ROSTER_EXAMPLES = [
     (
         "Toronto's 2025-26 defensemen.",
         "SELECT sweater_number, player_name, shoots_catches, height_inches, birth_country "
         "FROM nhl.main.roster('TOR', season := 20252026) WHERE position_group = 'defensemen' "
         "ORDER BY sweater_number",
-    )
+    ),
+    ROSTER_SCORING_EXAMPLE,
 ]
 
 
@@ -300,7 +311,7 @@ _SEARCH_EXAMPLES = [
     (
         "Find players named Hughes who are active.",
         "SELECT player_id, player_name, position_code, team_abbrev "
-        "FROM nhl.main.player_search('hughes', active_only := true)",
+        "FROM nhl.main.player_search('hughes', active_only := true) ORDER BY player_name",
     )
 ]
 

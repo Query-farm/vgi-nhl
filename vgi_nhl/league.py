@@ -51,7 +51,7 @@ _CURRENT_SCORES_SCAN_EXAMPLES = [
     (
         "Today's games from the backing scan.",
         "SELECT away_team_abbrev, away_score, home_team_abbrev, home_score, game_state "
-        "FROM nhl.main.all_current_scores()",
+        "FROM nhl.main.all_current_scores() ORDER BY start_time_utc",
     )
 ]
 

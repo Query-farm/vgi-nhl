@@ -9,7 +9,7 @@ import sys
 from vgi import Worker
 from vgi.catalog import Catalog, ConstraintInfo, Schema, Table, constraint_record
 
-from vgi_nhl.games import GAME_FUNCTIONS
+from vgi_nhl.games import GAME_FUNCTIONS, ON_ICE_GOALS_EXAMPLE
 from vgi_nhl.league import (
     LEAGUE_FUNCTIONS,
     CurrentScheduleFunction,
@@ -28,10 +28,19 @@ from vgi_nhl.league_schemas import (
     TEAMS_SCHEMA,
 )
 from vgi_nhl.meta import column_comments
-from vgi_nhl.players import PLAYER_FUNCTIONS
-from vgi_nhl.stats import STATS_FUNCTIONS, CurrentGoalieLeadersFunction, CurrentSkaterLeadersFunction
+from vgi_nhl.players import PLAYER_FUNCTIONS, ROSTER_SCORING_EXAMPLE
+from vgi_nhl.stats import (
+    POWER_FORWARDS_EXAMPLE,
+    STATS_FUNCTIONS,
+    CurrentGoalieLeadersFunction,
+    CurrentSkaterLeadersFunction,
+)
 
 SOURCE_URL = "https://github.com/Query-farm/vgi-nhl"
+
+
+def _example_queries(queries: list[tuple[str, str]]) -> str:
+    return json.dumps([{"description": description, "sql": sql} for description, sql in queries])
 
 
 def _table_tags(
@@ -44,11 +53,26 @@ def _table_tags(
         "vgi.keywords": json.dumps(keywords),
         "vgi.doc_llm": llm,
         "vgi.doc_md": md,
-        "vgi.example_queries": json.dumps(
-            [{"description": description, "sql": sql} for description, sql in queries]
-        ),
+        "vgi.example_queries": _example_queries(queries),
     }
 
+
+_CURRENT_STANDINGS_QUERIES = [
+    (
+        "Current division tables in official order.",
+        "SELECT division_name, division_rank, team_abbrev, points, games_played "
+        "FROM nhl.main.current_standings ORDER BY division_name, division_rank",
+    ),
+    (
+        "Eastern Conference wild-card race.",
+        "SELECT wildcard_rank, team_abbrev, points, games_played FROM nhl.main.current_standings "
+        "WHERE conference_name = 'Eastern' AND wildcard_rank > 0 ORDER BY wildcard_rank",
+    ),
+]
+
+# Examples that combine several of the catalog's functions; each is also on the example list of
+# the function that drives it, where agents discover function examples.
+_COMPOSED_QUERIES = [ON_ICE_GOALS_EXAMPLE, ROSTER_SCORING_EXAMPLE, POWER_FORWARDS_EXAMPLE]
 
 _CURRENT_STANDINGS_TAGS = _table_tags(
     category="standings",
@@ -63,18 +87,7 @@ _CURRENT_STANDINGS_TAGS = _table_tags(
         "Today's NHL standings as an ordinary read-only table. `division_rank`, "
         "`conference_rank`, and `league_rank` follow the NHL's official tiebreaking order."
     ),
-    queries=[
-        (
-            "Current division tables in official order.",
-            "SELECT division_name, division_rank, team_abbrev, points, games_played "
-            "FROM nhl.main.current_standings ORDER BY division_name, division_rank",
-        ),
-        (
-            "Eastern Conference wild-card race.",
-            "SELECT wildcard_rank, team_abbrev, points, games_played FROM nhl.main.current_standings "
-            "WHERE conference_name = 'Eastern' AND wildcard_rank > 0 ORDER BY wildcard_rank",
-        ),
-    ],
+    queries=_CURRENT_STANDINGS_QUERIES,
 )
 
 _CURRENT_SCHEDULE_TAGS = _table_tags(
@@ -314,6 +327,20 @@ AGENT_TASKS = [
             "the drafting franchise played?"
         ),
     },
+    {
+        "name": "leafs_roster_hits_leader",
+        "prompt": (
+            "Which skater on the Toronto Maple Leafs' 2025-26 roster delivered the most hits in "
+            "the 2025-26 regular season, how many hits was that, and how many points did he score?"
+        ),
+    },
+    {
+        "name": "opener_ice_time_without_goals",
+        "prompt": (
+            "In NHL game 2025020001, which player logged the most total ice time without being on "
+            "the ice for any goal by either team, and how much ice time was that?"
+        ),
+    },
 ]
 
 
@@ -488,7 +515,7 @@ NHL_CATALOG = Catalog(
                     "identifiers the functions accept. Percentages are 0-1 fractions and times on "
                     "ice come both as MM:SS text and as integer seconds."
                 ),
-                "vgi.example_queries": _CURRENT_STANDINGS_TAGS["vgi.example_queries"],
+                "vgi.example_queries": _example_queries([*_CURRENT_STANDINGS_QUERIES, *_COMPOSED_QUERIES]),
             },
             functions=[*LEAGUE_FUNCTIONS, *STATS_FUNCTIONS, *PLAYER_FUNCTIONS, *GAME_FUNCTIONS],
             tables=[

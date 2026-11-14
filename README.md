@@ -194,12 +194,28 @@ SELECT team_abbrev, player_name, count(*) AS shifts, sum(duration_seconds) AS se
 FROM nhl.main.shift_chart(2025020001)
 GROUP BY ALL
 ORDER BY seconds DESC;
+
+-- Goals for and against while each player was on the ice: join each goal's
+-- game_seconds to the shift that contains it
+WITH goals AS (
+    SELECT game_seconds, event_owner_team_abbrev AS scoring_team
+    FROM nhl.main.play_by_play(2025020001)
+    WHERE event_type = 'goal'
+)
+SELECT s.team_abbrev, s.player_name,
+       count(*) FILTER (WHERE g.scoring_team = s.team_abbrev) AS on_ice_goals_for,
+       count(*) FILTER (WHERE g.scoring_team <> s.team_abbrev) AS on_ice_goals_against
+FROM goals g
+JOIN nhl.main.shift_chart(2025020001) s
+  ON g.game_seconds > s.start_seconds AND g.game_seconds <= s.end_seconds
+GROUP BY ALL
+ORDER BY on_ice_goals_for DESC, on_ice_goals_against, s.player_name;
 ```
 
 `box_score()` holds the skater lines and `box_score_goalies()` holds the goalie
-lines. You can find out who was on the ice for an event by joining
-`play_by_play().game_seconds` to the `start_seconds`/`end_seconds` interval in
-`shift_chart()`.
+lines. The last query shows the general pattern for finding who was on the ice
+for any event: join `play_by_play().game_seconds` to the
+`start_seconds`/`end_seconds` interval in `shift_chart()`.
 
 ## Data source, licence, and affiliation
 

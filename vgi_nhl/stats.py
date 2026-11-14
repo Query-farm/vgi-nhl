@@ -124,6 +124,16 @@ class _Report(Fetching):
         return flatten(records, cls.SPEC, defaults=defaults, key=cls.KEY), response.ttl
 
 
+POWER_FORWARDS_EXAMPLE = (
+    "2025-26 skaters with at least 50 points and 150 hits: skater_stats scoring joined to "
+    "skater_realtime_stats physical play on player_id.",
+    "SELECT s.player_name, s.team_abbrevs, s.points, rt.hits, rt.blocked_shots "
+    "FROM nhl.main.skater_stats(season := 20252026) s "
+    "JOIN nhl.main.skater_realtime_stats(season := 20252026) rt USING (player_id) "
+    "WHERE s.points >= 50 AND rt.hits >= 150 ORDER BY rt.hits DESC, s.player_name",
+)
+"""Composed example: scoring and physical play from two season reports."""
+
 _SKATER_EXAMPLES = [
     (
         "The 2025-26 regular-season scoring leaders.",
@@ -135,6 +145,7 @@ _SKATER_EXAMPLES = [
         "SELECT player_name, team_abbrevs, goals FROM nhl.main.skater_stats(season := 20252026, "
         "game_type := 3) ORDER BY goals DESC LIMIT 10",
     ),
+    POWER_FORWARDS_EXAMPLE,
 ]
 
 

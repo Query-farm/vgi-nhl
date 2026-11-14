@@ -93,7 +93,7 @@ _GOALIE_BOX_EXAMPLES = [
     (
         "Goaltending in the 2025-26 opener.",
         "SELECT team_abbrev, player_name, decision, shots_against, saves, save_pct "
-        "FROM nhl.main.box_score_goalies(2025020001)",
+        "FROM nhl.main.box_score_goalies(2025020001) ORDER BY team_abbrev, toi_seconds DESC",
     )
 ]
 
@@ -134,6 +134,20 @@ class BoxScoreGoaliesFunction(Fetching, TableFunctionGenerator[GameArgs]):
         return flatten_box_score(api.require_dict(response), goalies=True), response.ttl
 
 
+ON_ICE_GOALS_EXAMPLE = (
+    "Goals for and against while each player was on the ice in the 2025-26 opener: play_by_play "
+    "goals joined to the shift_chart interval that contains each goal's game_seconds.",
+    "WITH goals AS (SELECT game_seconds, event_owner_team_abbrev AS scoring_team "
+    "FROM nhl.main.play_by_play(2025020001) WHERE event_type = 'goal') "
+    "SELECT s.team_abbrev, s.player_name, "
+    "count(*) FILTER (WHERE g.scoring_team = s.team_abbrev) AS on_ice_goals_for, "
+    "count(*) FILTER (WHERE g.scoring_team <> s.team_abbrev) AS on_ice_goals_against "
+    "FROM goals g JOIN nhl.main.shift_chart(2025020001) s "
+    "ON g.game_seconds > s.start_seconds AND g.game_seconds <= s.end_seconds "
+    "GROUP BY ALL ORDER BY on_ice_goals_for DESC, on_ice_goals_against, s.player_name",
+)
+"""Composed example: which players were on the ice for each goal, from play-by-play and shifts."""
+
 _PBP_EXAMPLES = [
     (
         "Every goal in the 2025-26 opener with scorer and location.",
@@ -148,6 +162,7 @@ _PBP_EXAMPLES = [
         "WHERE event_type IN ('goal', 'shot-on-goal', 'missed-shot', 'blocked-shot') "
         "GROUP BY ALL ORDER BY ALL",
     ),
+    ON_ICE_GOALS_EXAMPLE,
 ]
 
 
