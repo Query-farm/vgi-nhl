@@ -147,3 +147,18 @@ def test_composed_examples_reach_schema_and_driving_function() -> None:
         first_five = json.loads(functions[name].Meta.tags["vgi.example_queries"])[:5]
         assert {"description": description, "sql": sql} in first_five, name
         assert any(example.sql == sql for example in functions[name].Meta.examples[:5]), name
+
+
+def test_saved_answer_tasks_grade_the_saved_answer() -> None:
+    # A check_sql that only re-derives the truth passes whatever the analyst answers; tasks that
+    # ask for a saved temp table must read that table so a wrong answer fails.
+    text = (ROOT / "vgi-agent-tests.yaml").read_text()
+    blocks = dict(re.findall(r"^  - name: (\S+)\n(.*?)(?=^  - name: |\Z)", text, re.MULTILINE | re.DOTALL))
+    saved = {
+        task["name"]: match.group(1)
+        for task in AGENT_TASKS
+        if (match := re.search(r"temp table named (\w+)", task["prompt"]))
+    }
+    assert saved
+    for name, table in saved.items():
+        assert re.search(rf"\bFROM {table}\b", blocks[name]), name

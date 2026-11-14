@@ -114,18 +114,25 @@ tasks:
       Names Matthew Schaefer, drafted by the New York Islanders, and lists the franchise's
       team names from the teams and franchises tables.
 
+  # Composed tasks: the prompt asks the analyst to save its answer in a temp table, and
+  # check_sql recomputes the settled 2025-26 truth from the joined functions, pins it, and
+  # compares it to the saved row, so a wrong answer (or no saved answer) fails.
   - name: leafs_roster_hits_leader
     check_sql: >-
-      SELECT (SELECT r.player_id FROM nhl.main.roster('TOR', season := 20252026) r
-              JOIN nhl.main.skater_realtime_stats(season := 20252026) rt USING (player_id)
-              ORDER BY rt.hits DESC LIMIT 1) = 8478057
-        AND (SELECT hits FROM nhl.main.skater_realtime_stats(season := 20252026)
-             WHERE player_id = 8478057) = 195
-        AND (SELECT points FROM nhl.main.skater_stats(season := 20252026)
-             WHERE player_id = 8478057) = 18
+      WITH truth AS (
+        SELECT r.player_id, rt.hits, s.points
+        FROM nhl.main.roster('TOR', season := 20252026) r
+        JOIN nhl.main.skater_realtime_stats(season := 20252026) rt USING (player_id)
+        JOIN nhl.main.skater_stats(season := 20252026) s USING (player_id)
+        ORDER BY rt.hits DESC LIMIT 1
+      )
+      SELECT (SELECT player_id = 8478057 AND hits = 195 AND points = 18 FROM truth)
+        AND (SELECT count(*) FROM leafs_hits_leader) = 1
+        AND (SELECT a.player_id = t.player_id AND a.hits = t.hits AND a.points = t.points
+             FROM leafs_hits_leader a, truth t)
     success_criteria: >-
       Joins Toronto's 2025-26 roster to the season reports and names Dakota Joshua with 195
-      hits and 18 points.
+      hits and 18 points, saved in leafs_hits_leader.
 
   - name: opener_ice_time_without_goals
     check_sql: >-
@@ -133,10 +140,15 @@ tasks:
            shifts AS (SELECT player_id, start_seconds, end_seconds, duration_seconds
                       FROM nhl.main.shift_chart(2025020001)),
            on_ice AS (SELECT DISTINCT s.player_id FROM shifts s JOIN goals g
-                      ON g.game_seconds > s.start_seconds AND g.game_seconds <= s.end_seconds)
-      SELECT (SELECT player_id FROM shifts WHERE player_id NOT IN (SELECT player_id FROM on_ice)
-              GROUP BY player_id ORDER BY sum(duration_seconds) DESC LIMIT 1) = 8484144
-        AND (SELECT sum(duration_seconds) FROM shifts WHERE player_id = 8484144) = 1320
+                      ON g.game_seconds > s.start_seconds AND g.game_seconds <= s.end_seconds),
+           truth AS (SELECT player_id, sum(duration_seconds) AS toi_seconds FROM shifts
+                     WHERE player_id NOT IN (SELECT player_id FROM on_ice)
+                     GROUP BY player_id ORDER BY toi_seconds DESC LIMIT 1)
+      SELECT (SELECT player_id = 8484144 AND toi_seconds = 1320 FROM truth)
+        AND (SELECT count(*) FROM opener_goalless_toi) = 1
+        AND (SELECT a.player_id = t.player_id AND a.toi_seconds = t.toi_seconds
+             FROM opener_goalless_toi a, truth t)
     success_criteria: >-
       Matches play_by_play goal times to shift_chart intervals and names Chicago's Connor
-      Bedard, who played 22:00 (1,320 seconds) without being on the ice for any of the five goals.
+      Bedard, who played 22:00 (1,320 seconds) without being on the ice for any of the five
+      goals, saved in opener_goalless_toi.

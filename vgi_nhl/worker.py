@@ -331,14 +331,18 @@ AGENT_TASKS = [
         "name": "leafs_roster_hits_leader",
         "prompt": (
             "Which skater on the Toronto Maple Leafs' 2025-26 roster delivered the most hits in "
-            "the 2025-26 regular season, how many hits was that, and how many points did he score?"
+            "the 2025-26 regular season, how many hits was that, and how many points did he score? "
+            "Save your answer as a temp table named leafs_hits_leader with one row and columns "
+            "player_id (INTEGER, NHL player id), hits (INTEGER), and points (INTEGER)."
         ),
     },
     {
         "name": "opener_ice_time_without_goals",
         "prompt": (
             "In NHL game 2025020001, which player logged the most total ice time without being on "
-            "the ice for any goal by either team, and how much ice time was that?"
+            "the ice for any goal by either team, and how much ice time was that? Save your answer "
+            "as a temp table named opener_goalless_toi with one row and columns player_id (INTEGER, "
+            "NHL player id) and toi_seconds (INTEGER, total ice time in seconds)."
         ),
     },
 ]
