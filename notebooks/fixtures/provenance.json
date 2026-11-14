@@ -1,0 +1,20 @@
+{
+  "source": "Unchanged recorded, trimmed real NHL responses from the worker repository tests. Original capture time unavailable.",
+  "repository": "https://github.com/Query-farm/vgi-nhl",
+  "revision": "d8aff6a88c64704047a3cd0a078c83a561de8633",
+  "game_id": 2025020001,
+  "game_date": "2025-10-07",
+  "coverage": "18 selected play-by-play events; six first-period Brad Marchand shift rows plus one non-shift goal marker in raw shift response. Incomplete game and lineup coverage.",
+  "files": [
+    {
+      "file": "play_by_play_2025020001.json",
+      "source_path": "tests/fixtures/play_by_play_2025020001.json",
+      "sha256": "afde785603df8c40f694892169e6f8e05d102e8add2c7baa70fcdc4bb5766b7a"
+    },
+    {
+      "file": "shiftcharts_2025020001.json",
+      "source_path": "tests/fixtures/shiftcharts_2025020001.json",
+      "sha256": "694fab1c9b99dfe686750a72ba88a446b8f3fc47dc9f54d59d0f1c5a2bae5710"
+    }
+  ]
+}

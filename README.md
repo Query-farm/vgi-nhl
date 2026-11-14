@@ -349,3 +349,7 @@ start.
 ---
 
 Copyright 2026 Query Farm LLC - https://query.farm
+
+## Executed SQL notebook
+
+[Events at shift boundaries](notebooks/README.md) joins recorded play-by-play times to shifts, compares interval endpoint policies, and keeps incomplete coverage explicit.
