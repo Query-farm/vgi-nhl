@@ -487,7 +487,13 @@ NHL_CATALOG = Catalog(
             "(`2025020001`) and player ids 7 digits (`8478402`); `player_search()` finds them.\n\n"
             "## Source\n\n"
             "All access is read-only, keyless, and on demand from NHL.com's own backends; nothing "
-            "is stored or rehosted. This project is not affiliated with the NHL."
+            "is stored or rehosted. This project is not affiliated with the NHL.\n\n"
+            "* [NHL.com](https://www.nhl.com/) and [NHL Stats](https://www.nhl.com/stats/): the official "
+            "sites backed by the `api-web.nhle.com` and `api.nhle.com/stats` APIs this worker calls.\n"
+            "* [NHL.com Terms of Service](https://www.nhl.com/info/terms-of-service): the terms that "
+            "apply to NHL data.\n"
+            "* [NHL API Reference](https://github.com/Zmalski/NHL-API-Reference): a community reference "
+            "for those endpoints."
         ),
     },
     schemas=[
