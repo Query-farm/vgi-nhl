@@ -509,12 +509,12 @@ NHL_CATALOG = Catalog(
                 ),
                 "vgi.categories": json.dumps(_SCHEMA_CATEGORIES),
                 "vgi.doc_llm": (
-                    "Use current_standings, current_schedule, current_scores, current_skater_leaders, "
-                    "and current_goalie_leaders for today's picture, and teams, franchises, and "
-                    "standings_seasons for identifiers. Use skater_stats, goalie_stats, "
-                    "and team_stats for full season reports; player_search then player, "
-                    "player_career, and player_game_log for one player; box_score, play_by_play, and "
-                    "shift_chart for one game."
+                    "Argument-free current tables give today's standings, schedule, scores and stat "
+                    "leaders; reference tables of teams, franchises and seasons supply the ids the "
+                    "functions accept. Parameterized functions work at three levels: season reports "
+                    "for every skater, goalie and team; one player's profile, career and game log, "
+                    "found by name search; and one game's box score, play-by-play and shift chart, "
+                    "keyed by its 10-digit game id. Seasons are 8-digit ids such as 20252026."
                 ),
                 "vgi.doc_md": (
                     "## NHL analytical data\n\n"

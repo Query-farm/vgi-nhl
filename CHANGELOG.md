@@ -9,6 +9,8 @@ All notable changes to this project are documented here.
 - Docs link to NHL.com, NHL Stats, the NHL.com Terms of Service and a community
   API reference: the catalog's documentation gains a Sources and references
   section (vgi-lint VGI183).
+- The schema documentation gives an overview of the worker instead of listing its
+  functions (vgi-lint VGI173); per-function guidance lives on each function's own docs.
 
 ## [0.2.0]
 
