@@ -1,0 +1,1248 @@
+{
+  "query": "SELECT * FROM duckdb_functions() WHERE database_name='nhl' ORDER BY schema_name,function_name",
+  "columns": [
+    "database_name",
+    "database_oid",
+    "schema_name",
+    "function_name",
+    "alias_of",
+    "function_type",
+    "description",
+    "comment",
+    "tags",
+    "return_type",
+    "parameters",
+    "parameter_types",
+    "varargs",
+    "macro_definition",
+    "has_side_effects",
+    "internal",
+    "extension_name",
+    "function_oid",
+    "examples",
+    "stability",
+    "categories"
+  ],
+  "rows": [
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_current_goalie_leaders",
+      null,
+      "table",
+      "Current NHL top-ten goalie leaders per category (scan behind current_goalie_leaders)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "leaders",
+        "vgi.doc_llm": "The scan behind current_goalie_leaders. Prefer the table; use goalie_leaders() for options.",
+        "vgi.doc_md": "Top ten per goalie category for the current season.",
+        "vgi.example_queries": "[{\"description\": \"Current wins leaders from the backing scan.\", \"sql\": \"SELECT rank, player_name, value FROM nhl.main.all_current_goalie_leaders() WHERE category = 'wins' ORDER BY rank\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id the leaderboard covers\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season, 3 playoffs\"},{\"name\":\"category\",\"type\":\"VARCHAR\",\"description\":\"Leader category, such as points, goals, or savePctg\"},{\"name\":\"rank\",\"type\":\"INTEGER\",\"description\":\"Position in the NHL's ordered leader list (1 = leader)\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the player's team\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Oilers\"},{\"name\":\"value\",\"type\":\"DOUBLE\",\"description\":\"Category value: a count, a 0-1 percentage, goals-against average, or TOI seconds per game\"}]",
+        "vgi.title": "Current NHL Goalie Leaders Scan"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22596,
+      [
+        "SELECT rank, player_name, value FROM nhl.main.all_current_goalie_leaders() WHERE category = 'wins' ORDER BY rank"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "leaders",
+        "goalies"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_current_schedule",
+      null,
+      "table",
+      "NHL games in the seven days starting today (scan behind current_schedule)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "schedule",
+        "vgi.doc_llm": "The scan behind current_schedule. Prefer the table; use schedule() for other weeks.",
+        "vgi.doc_md": "Returns this week's games. Selecting `current_schedule` is normally clearer.",
+        "vgi.example_queries": "[{\"description\": \"Upcoming games from the backing scan.\", \"sql\": \"SELECT game_date, away_team_abbrev, home_team_abbrev FROM nhl.main.all_current_schedule() ORDER BY start_time_utc\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id, such as 2025020001 (season, type, number)\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local calendar date of the game\"},{\"name\":\"start_time_utc\",\"type\":\"TIMESTAMP WITH TIME ZONE\",\"description\":\"Scheduled puck-drop time in UTC\"},{\"name\":\"venue\",\"type\":\"VARCHAR\",\"description\":\"Arena name\"},{\"name\":\"venue_timezone\",\"type\":\"VARCHAR\",\"description\":\"IANA time zone of the arena\"},{\"name\":\"neutral_site\",\"type\":\"BOOLEAN\",\"description\":\"Whether the game is played at a neutral site\"},{\"name\":\"game_state\",\"type\":\"VARCHAR\",\"description\":\"Game state: FUT future, PRE pregame, LIVE/CRIT in progress, FINAL/OFF finished\"},{\"name\":\"game_schedule_state\",\"type\":\"VARCHAR\",\"description\":\"Schedule state: OK, PPD postponed, or CNCL cancelled\"},{\"name\":\"away_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the visiting team\"},{\"name\":\"away_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the visiting team\"},{\"name\":\"away_team_name\",\"type\":\"VARCHAR\",\"description\":\"Visiting team nickname, such as Blackhawks; join teams for the full name\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Visiting team goals; NULL before the game starts\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Visiting team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"home_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the home team\"},{\"name\":\"home_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the home team\"},{\"name\":\"home_team_name\",\"type\":\"VARCHAR\",\"description\":\"Home team nickname, such as Panthers; join teams for the full name\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team goals; NULL before the game starts\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Current or final period number (4+ means overtime/shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Current or final period type: REG, OT, or SO\"},{\"name\":\"last_period_type\",\"type\":\"VARCHAR\",\"description\":\"How a finished game ended: REG, OT, or SO\"},{\"name\":\"winning_goalie_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the winning goalie; schedules only, NULL in scores()\"},{\"name\":\"winning_goalie_name\",\"type\":\"VARCHAR\",\"description\":\"Winning goalie, as an initial and last name\"},{\"name\":\"winning_goal_scorer_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the game-winning goal scorer; schedules only, NULL in scores()\"},{\"name\":\"winning_goal_scorer_name\",\"type\":\"VARCHAR\",\"description\":\"Game-winning goal scorer, as initial and last name\"},{\"name\":\"game_center_url\",\"type\":\"VARCHAR\",\"description\":\"NHL.com GameCenter URL for the game\"}]",
+        "vgi.title": "Current NHL Schedule Scan"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22597,
+      [
+        "SELECT game_date, away_team_abbrev, home_team_abbrev FROM nhl.main.all_current_schedule() ORDER BY start_time_utc"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "schedule"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_current_scores",
+      null,
+      "table",
+      "Today's NHL games with live or final scores (scan behind current_scores)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "schedule",
+        "vgi.doc_llm": "The scan behind current_scores. Prefer the table; use scores() for another date.",
+        "vgi.doc_md": "Returns today's scoreboard. Selecting `current_scores` is normally clearer.",
+        "vgi.example_queries": "[{\"description\": \"Today's games from the backing scan.\", \"sql\": \"SELECT away_team_abbrev, away_score, home_team_abbrev, home_score, game_state FROM nhl.main.all_current_scores()\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id, such as 2025020001 (season, type, number)\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local calendar date of the game\"},{\"name\":\"start_time_utc\",\"type\":\"TIMESTAMP WITH TIME ZONE\",\"description\":\"Scheduled puck-drop time in UTC\"},{\"name\":\"venue\",\"type\":\"VARCHAR\",\"description\":\"Arena name\"},{\"name\":\"venue_timezone\",\"type\":\"VARCHAR\",\"description\":\"IANA time zone of the arena\"},{\"name\":\"neutral_site\",\"type\":\"BOOLEAN\",\"description\":\"Whether the game is played at a neutral site\"},{\"name\":\"game_state\",\"type\":\"VARCHAR\",\"description\":\"Game state: FUT future, PRE pregame, LIVE/CRIT in progress, FINAL/OFF finished\"},{\"name\":\"game_schedule_state\",\"type\":\"VARCHAR\",\"description\":\"Schedule state: OK, PPD postponed, or CNCL cancelled\"},{\"name\":\"away_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the visiting team\"},{\"name\":\"away_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the visiting team\"},{\"name\":\"away_team_name\",\"type\":\"VARCHAR\",\"description\":\"Visiting team nickname, such as Blackhawks; join teams for the full name\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Visiting team goals; NULL before the game starts\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Visiting team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"home_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the home team\"},{\"name\":\"home_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the home team\"},{\"name\":\"home_team_name\",\"type\":\"VARCHAR\",\"description\":\"Home team nickname, such as Panthers; join teams for the full name\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team goals; NULL before the game starts\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Current or final period number (4+ means overtime/shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Current or final period type: REG, OT, or SO\"},{\"name\":\"last_period_type\",\"type\":\"VARCHAR\",\"description\":\"How a finished game ended: REG, OT, or SO\"},{\"name\":\"winning_goalie_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the winning goalie; schedules only, NULL in scores()\"},{\"name\":\"winning_goalie_name\",\"type\":\"VARCHAR\",\"description\":\"Winning goalie, as an initial and last name\"},{\"name\":\"winning_goal_scorer_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the game-winning goal scorer; schedules only, NULL in scores()\"},{\"name\":\"winning_goal_scorer_name\",\"type\":\"VARCHAR\",\"description\":\"Game-winning goal scorer, as initial and last name\"},{\"name\":\"game_center_url\",\"type\":\"VARCHAR\",\"description\":\"NHL.com GameCenter URL for the game\"}]",
+        "vgi.title": "Current NHL Scores Scan"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22598,
+      [
+        "SELECT away_team_abbrev, away_score, home_team_abbrev, home_score, game_state FROM nhl.main.all_current_scores()"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "schedule",
+        "scores"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_current_skater_leaders",
+      null,
+      "table",
+      "Current NHL top-ten skater leaders per category (scan behind current_skater_leaders)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "leaders",
+        "vgi.doc_llm": "The scan behind current_skater_leaders. Prefer the table; use skater_leaders() for options.",
+        "vgi.doc_md": "Top ten per skater category for the current season.",
+        "vgi.example_queries": "[{\"description\": \"Current points leaders from the backing scan.\", \"sql\": \"SELECT rank, player_name, value FROM nhl.main.all_current_skater_leaders() WHERE category = 'points' ORDER BY rank\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id the leaderboard covers\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season, 3 playoffs\"},{\"name\":\"category\",\"type\":\"VARCHAR\",\"description\":\"Leader category, such as points, goals, or savePctg\"},{\"name\":\"rank\",\"type\":\"INTEGER\",\"description\":\"Position in the NHL's ordered leader list (1 = leader)\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the player's team\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Oilers\"},{\"name\":\"value\",\"type\":\"DOUBLE\",\"description\":\"Category value: a count, a 0-1 percentage, goals-against average, or TOI seconds per game\"}]",
+        "vgi.title": "Current NHL Skater Leaders Scan"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22599,
+      [
+        "SELECT rank, player_name, value FROM nhl.main.all_current_skater_leaders() WHERE category = 'points' ORDER BY rank"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "leaders",
+        "skaters"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_current_standings",
+      null,
+      "table",
+      "Today's NHL standings (scan behind current_standings)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "standings",
+        "vgi.doc_llm": "The scan behind the current_standings table. Prefer the table; use standings() with a date for historical standings.",
+        "vgi.doc_md": "Returns today's standings. Selecting `current_standings` is normally clearer.",
+        "vgi.example_queries": "[{\"description\": \"Division leaders from the backing scan.\", \"sql\": \"SELECT division_name, team_abbrev, points FROM nhl.main.all_current_standings() WHERE division_rank = 1 ORDER BY division_name\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season\"},{\"name\":\"standings_date\",\"type\":\"DATE\",\"description\":\"Date the standings snapshot describes\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code, such as TOR\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Full team name, such as Toronto Maple Leafs\"},{\"name\":\"team_common_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Maple Leafs\"},{\"name\":\"team_place_name\",\"type\":\"VARCHAR\",\"description\":\"Team location, such as Toronto\"},{\"name\":\"conference_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Conference code: E or W\"},{\"name\":\"conference_name\",\"type\":\"VARCHAR\",\"description\":\"Conference name, such as Eastern\"},{\"name\":\"division_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Division code, such as A, M, C, or P\"},{\"name\":\"division_name\",\"type\":\"VARCHAR\",\"description\":\"Division name, such as Atlantic\"},{\"name\":\"league_rank\",\"type\":\"INTEGER\",\"description\":\"League-wide rank (1 = best)\"},{\"name\":\"conference_rank\",\"type\":\"INTEGER\",\"description\":\"Position within the conference\"},{\"name\":\"division_rank\",\"type\":\"INTEGER\",\"description\":\"Position within the division\"},{\"name\":\"wildcard_rank\",\"type\":\"INTEGER\",\"description\":\"Wild-card rank; 0 for division-spot holders\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Count of games played so far\"},{\"name\":\"wins\",\"type\":\"INTEGER\",\"description\":\"Wins, including overtime and shootout wins\"},{\"name\":\"losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses\"},{\"name\":\"ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses (one point each)\"},{\"name\":\"ties\",\"type\":\"INTEGER\",\"description\":\"Ties, before 2005-06\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Standings points\"},{\"name\":\"point_pct\",\"type\":\"DOUBLE\",\"description\":\"Points divided by points available (0-1)\"},{\"name\":\"regulation_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation wins, the first tiebreaker\"},{\"name\":\"regulation_plus_ot_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation plus overtime wins\"},{\"name\":\"shootout_wins\",\"type\":\"INTEGER\",\"description\":\"Games won in a shootout\"},{\"name\":\"shootout_losses\",\"type\":\"INTEGER\",\"description\":\"Games lost in a shootout\"},{\"name\":\"goals_for\",\"type\":\"INTEGER\",\"description\":\"Goals scored\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed\"},{\"name\":\"goal_differential\",\"type\":\"INTEGER\",\"description\":\"Goals for minus goals against\"},{\"name\":\"home_wins\",\"type\":\"INTEGER\",\"description\":\"Wins at home\"},{\"name\":\"home_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses at home\"},{\"name\":\"home_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses at home\"},{\"name\":\"home_points\",\"type\":\"INTEGER\",\"description\":\"Points earned at home\"},{\"name\":\"road_wins\",\"type\":\"INTEGER\",\"description\":\"Wins on the road\"},{\"name\":\"road_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses on the road\"},{\"name\":\"road_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses on the road\"},{\"name\":\"road_points\",\"type\":\"INTEGER\",\"description\":\"Points earned on the road\"},{\"name\":\"last_10_wins\",\"type\":\"INTEGER\",\"description\":\"Wins in the last ten games\"},{\"name\":\"last_10_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses in the last ten games\"},{\"name\":\"last_10_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses in the last ten games\"},{\"name\":\"streak_code\",\"type\":\"VARCHAR\",\"description\":\"Streak type: W, L, or OT\"},{\"name\":\"streak_count\",\"type\":\"INTEGER\",\"description\":\"Length of the current streak\"},{\"name\":\"clinch_indicator\",\"type\":\"VARCHAR\",\"description\":\"Clinch: p Presidents' Trophy, z conference, y division, x berth, e out\"},{\"name\":\"team_logo_url\",\"type\":\"VARCHAR\",\"description\":\"Team logo SVG URL\"}]",
+        "vgi.title": "Current NHL Standings Scan"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22600,
+      [
+        "SELECT division_name, team_abbrev, points FROM nhl.main.all_current_standings() WHERE division_rank = 1 ORDER BY division_name"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "standings"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_franchises",
+      null,
+      "table",
+      "Every NHL franchise, active and defunct (scan behind the franchises table)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "reference",
+        "vgi.doc_llm": "One row per franchise with its latest name. A franchise spans relocations and renames (e.g. Quebec Nordiques to Colorado Avalanche); the teams table maps team ids to franchise ids.",
+        "vgi.doc_md": "Active and defunct franchises from the NHL stats service.",
+        "vgi.example_queries": "[{\"description\": \"All NHL franchises alphabetically.\", \"sql\": \"SELECT franchise_id, full_name FROM nhl.main.all_franchises() ORDER BY full_name\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"franchise_id\",\"type\":\"INTEGER\",\"description\":\"NHL franchise id\"},{\"name\":\"full_name\",\"type\":\"VARCHAR\",\"description\":\"Most recent full name of the franchise\"},{\"name\":\"common_name\",\"type\":\"VARCHAR\",\"description\":\"Franchise nickname\"},{\"name\":\"place_name\",\"type\":\"VARCHAR\",\"description\":\"Franchise location\"}]",
+        "vgi.title": "NHL Franchises"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22601,
+      [
+        "SELECT franchise_id, full_name FROM nhl.main.all_franchises() ORDER BY full_name"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "teams",
+        "reference"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_standings_seasons",
+      null,
+      "table",
+      "Every NHL season with standings dates and rule flags (scan behind standings_seasons)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "standings",
+        "vgi.doc_llm": "One row per NHL season id (e.g. 20252026) with the first and last standings dates and which rules applied: ties, OT-loss point, regulation wins, wild card, conferences, divisions. Use standings_end as the date for a season's final standings, and season ids as the season argument of other functions. Prefer the standings_seasons table; this is its backing scan.",
+        "vgi.doc_md": "Season ids, standings windows, and rule flags since 1917-18.",
+        "vgi.example_queries": "[{\"description\": \"Seasons whose standings used the wild card, newest first.\", \"sql\": \"SELECT season, standings_start, standings_end FROM nhl.main.all_standings_seasons() WHERE wildcard_in_use ORDER BY season DESC\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 19171918\"},{\"name\":\"standings_start\",\"type\":\"DATE\",\"description\":\"First date standings exist for the season\"},{\"name\":\"standings_end\",\"type\":\"DATE\",\"description\":\"Last date standings exist for the season\"},{\"name\":\"conferences_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether the season grouped teams into conferences\"},{\"name\":\"divisions_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether the season grouped teams into divisions\"},{\"name\":\"point_for_ot_loss_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether overtime losses earned a standings point\"},{\"name\":\"regulation_wins_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether regulation wins were tracked as a tiebreaker\"},{\"name\":\"row_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether regulation-plus-overtime wins were tracked\"},{\"name\":\"ties_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether games could end in a tie\"},{\"name\":\"wildcard_in_use\",\"type\":\"BOOLEAN\",\"description\":\"Whether playoff qualification used wild cards\"}]",
+        "vgi.title": "NHL Seasons"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22602,
+      [
+        "SELECT season, standings_start, standings_end FROM nhl.main.all_standings_seasons() WHERE wildcard_in_use ORDER BY season DESC"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "standings",
+        "seasons"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "all_teams",
+      null,
+      "table",
+      "Every current and historical NHL team (scan behind the teams table)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "reference",
+        "vgi.doc_llm": "Reference list of NHL team ids (the team_id used by team_stats(), scores, and box scores), three-letter tricodes, full names, and franchise ids. Includes relocated and defunct teams; join franchises on franchise_id to group relocations. Prefer the teams table; this is its backing scan.",
+        "vgi.doc_md": "Current and historical teams from the NHL stats service.",
+        "vgi.example_queries": "[{\"description\": \"Every team that has played for the Avalanche/Nordiques franchise.\", \"sql\": \"SELECT t.team_id, t.full_name, t.tricode FROM nhl.main.all_teams() t JOIN nhl.main.all_franchises() f USING (franchise_id) WHERE f.common_name = 'Avalanche'\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id, current or historical\"},{\"name\":\"franchise_id\",\"type\":\"INTEGER\",\"description\":\"Franchise id; relocated teams share one franchise\"},{\"name\":\"full_name\",\"type\":\"VARCHAR\",\"description\":\"Full team name\"},{\"name\":\"tricode\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code\"},{\"name\":\"league_id\",\"type\":\"INTEGER\",\"description\":\"League id; 133 is the NHL\"}]",
+        "vgi.title": "NHL Teams"
+      },
+      null,
+      [],
+      [],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22603,
+      [
+        "SELECT t.team_id, t.full_name, t.tricode FROM nhl.main.all_teams() t JOIN nhl.main.all_franchises() f USING (franchise_id) WHERE f.common_name = 'Avalanche'"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "teams",
+        "reference"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "box_score",
+      null,
+      "table",
+      "Skater box-score lines (both teams) for one NHL game",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "games",
+        "vgi.doc_llm": "One row per skater who played in a game, both teams (team_side away/home): goals, assists, points, plus-minus, PIM, hits, power-play goals, shots on goal, faceoff %, blocked shots, shifts, giveaways, takeaways, and TOI. Goalies are in box_score_goalies(). Game ids come from scores(), schedule(), or player_game_log().",
+        "vgi.doc_md": "Gamecenter box score, skaters only. Available once a game starts.",
+        "vgi.example_queries": "[{\"description\": \"Skater lines from the 2025-26 opener, by points.\", \"sql\": \"SELECT team_abbrev, player_name, goals, assists, shots_on_goal, toi FROM nhl.main.box_score(2025020001) ORDER BY points DESC, toi_seconds DESC\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id\"},{\"name\":\"team_side\",\"type\":\"VARCHAR\",\"description\":\"away or home\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player name as an initial and last name, such as C. McDavid\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, or D\"},{\"name\":\"goals\",\"type\":\"INTEGER\",\"description\":\"Goals\"},{\"name\":\"assists\",\"type\":\"INTEGER\",\"description\":\"Assists\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Points\"},{\"name\":\"plus_minus\",\"type\":\"INTEGER\",\"description\":\"Plus-minus\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"},{\"name\":\"hits\",\"type\":\"INTEGER\",\"description\":\"Hits delivered\"},{\"name\":\"power_play_goals\",\"type\":\"INTEGER\",\"description\":\"Power-play goals\"},{\"name\":\"shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Shots on goal\"},{\"name\":\"faceoff_win_pct\",\"type\":\"DOUBLE\",\"description\":\"Faceoffs won divided by faceoffs taken (0-1); 0 when none taken\"},{\"name\":\"toi\",\"type\":\"VARCHAR\",\"description\":\"Time on ice as MM:SS\"},{\"name\":\"toi_seconds\",\"type\":\"INTEGER\",\"description\":\"Time on ice in seconds\"},{\"name\":\"blocked_shots\",\"type\":\"INTEGER\",\"description\":\"Opponent shots blocked\"},{\"name\":\"shifts\",\"type\":\"INTEGER\",\"description\":\"Shifts taken\"},{\"name\":\"giveaways\",\"type\":\"INTEGER\",\"description\":\"Giveaways\"},{\"name\":\"takeaways\",\"type\":\"INTEGER\",\"description\":\"Takeaways\"}]",
+        "vgi.title": "NHL Box Score (Skaters)"
+      },
+      null,
+      [
+        "game_id"
+      ],
+      [
+        "BIGINT"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22604,
+      [
+        "SELECT team_abbrev, player_name, goals, assists, shots_on_goal, toi FROM nhl.main.box_score(2025020001) ORDER BY points DESC, toi_seconds DESC"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "games",
+        "box-score"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "box_score_goalies",
+      null,
+      "table",
+      "Goalie box-score lines (both teams) for one NHL game",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "games",
+        "vgi.doc_llm": "One row per goalie dressed for a game: starter flag, decision (W/L/O), shots against, saves, goals against, save %, goals against by strength, and TOI. Backups who did not play have zero TOI.",
+        "vgi.doc_md": "Gamecenter box score, goalies only.",
+        "vgi.example_queries": "[{\"description\": \"Goaltending in the 2025-26 opener.\", \"sql\": \"SELECT team_abbrev, player_name, decision, shots_against, saves, save_pct FROM nhl.main.box_score_goalies(2025020001)\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id\"},{\"name\":\"team_side\",\"type\":\"VARCHAR\",\"description\":\"away or home\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player name as an initial and last name, such as C. McDavid\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"starter\",\"type\":\"BOOLEAN\",\"description\":\"Whether the goalie started the game\"},{\"name\":\"decision\",\"type\":\"VARCHAR\",\"description\":\"Decision: W win, L loss, O overtime/shootout loss; NULL otherwise\"},{\"name\":\"shots_against\",\"type\":\"INTEGER\",\"description\":\"Shots on goal faced\"},{\"name\":\"saves\",\"type\":\"INTEGER\",\"description\":\"Saves\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed\"},{\"name\":\"save_pct\",\"type\":\"DOUBLE\",\"description\":\"Saves divided by shots against (0-1); NULL without shots faced\"},{\"name\":\"even_strength_goals_against\",\"type\":\"INTEGER\",\"description\":\"Even-strength goals allowed\"},{\"name\":\"power_play_goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed while the opponent was on a power play\"},{\"name\":\"shorthanded_goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed while the opponent was shorthanded\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"},{\"name\":\"toi\",\"type\":\"VARCHAR\",\"description\":\"Time on ice as MM:SS\"},{\"name\":\"toi_seconds\",\"type\":\"INTEGER\",\"description\":\"Time on ice in seconds\"}]",
+        "vgi.title": "NHL Box Score (Goalies)"
+      },
+      null,
+      [
+        "game_id"
+      ],
+      [
+        "BIGINT"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22605,
+      [
+        "SELECT team_abbrev, player_name, decision, shots_against, saves, save_pct FROM nhl.main.box_score_goalies(2025020001)"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "games",
+        "box-score",
+        "goalies"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "draft_picks",
+      null,
+      "table",
+      "Every pick of one NHL entry draft (1979 onward)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "draft",
+        "vgi.doc_llm": "All picks in one entry draft year: round, pick in round, overall pick, selecting team (with pick-trade history), and the drafted player's position, nationality, size, and amateur club. The draft's players have no NHL player id here; use player_search() to find one.",
+        "vgi.doc_md": "One row per draft pick, ordered by `overall_pick`.",
+        "vgi.example_queries": "[{\"description\": \"The first round of the 2025 NHL draft.\", \"sql\": \"SELECT overall_pick, team_abbrev, player_name, position_code, amateur_club_name FROM nhl.main.draft_picks(2025) WHERE round = 1 ORDER BY overall_pick\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"draft_year\",\"type\":\"INTEGER\",\"description\":\"Entry draft year\"},{\"name\":\"round\",\"type\":\"INTEGER\",\"description\":\"Draft round\"},{\"name\":\"pick_in_round\",\"type\":\"INTEGER\",\"description\":\"Pick number within the round\"},{\"name\":\"overall_pick\",\"type\":\"INTEGER\",\"description\":\"Overall pick number\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the selecting team\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the selecting team\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the selecting team\"},{\"name\":\"team_pick_history\",\"type\":\"VARCHAR\",\"description\":\"Teams that held the pick, in order, separated by hyphens\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Drafted player's full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Drafted player's first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Drafted player's last name\"},{\"name\":\"position_code\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"country_code\",\"type\":\"VARCHAR\",\"description\":\"Three-letter country code of the player\"},{\"name\":\"height_inches\",\"type\":\"INTEGER\",\"description\":\"Height in inches at the draft\"},{\"name\":\"weight_pounds\",\"type\":\"INTEGER\",\"description\":\"Weight in pounds at the draft\"},{\"name\":\"amateur_league\",\"type\":\"VARCHAR\",\"description\":\"League the player was drafted from, such as OHL\"},{\"name\":\"amateur_club_name\",\"type\":\"VARCHAR\",\"description\":\"Club the player was drafted from\"}]",
+        "vgi.title": "NHL Draft Picks"
+      },
+      null,
+      [
+        "year"
+      ],
+      [
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22606,
+      [
+        "SELECT overall_pick, team_abbrev, player_name, position_code, amateur_club_name FROM nhl.main.draft_picks(2025) WHERE round = 1 ORDER BY overall_pick"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "draft"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "goalie_leaders",
+      null,
+      "table",
+      "NHL goalie leaderboards by category for a season and game type",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "leaders",
+        "vgi.doc_llm": "Ranked goalie leaders in categories wins, savePctg (0-1), goalsAgainstAverage, and shutouts, one row per category and rank with the stat in value. The NHL applies its own games-played qualification to rate categories.",
+        "vgi.doc_md": "The NHL.com goalie leaderboards; `per_category` sets goalies per category (default 10).",
+        "vgi.example_queries": "[{\"description\": \"The 2025-26 regular-season wins leaders.\", \"sql\": \"SELECT rank, player_name, team_abbrev, value AS wins FROM nhl.main.goalie_leaders(season := 20252026, category := 'wins') ORDER BY rank\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id the leaderboard covers\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season, 3 playoffs\"},{\"name\":\"category\",\"type\":\"VARCHAR\",\"description\":\"Leader category, such as points, goals, or savePctg\"},{\"name\":\"rank\",\"type\":\"INTEGER\",\"description\":\"Position in the NHL's ordered leader list (1 = leader)\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the player's team\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Oilers\"},{\"name\":\"value\",\"type\":\"DOUBLE\",\"description\":\"Category value: a count, a 0-1 percentage, goals-against average, or TOI seconds per game\"}]",
+        "vgi.title": "NHL Goalie Leaders"
+      },
+      null,
+      [
+        "season",
+        "per_category",
+        "game_type",
+        "category"
+      ],
+      [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22607,
+      [
+        "SELECT rank, player_name, team_abbrev, value AS wins FROM nhl.main.goalie_leaders(season := 20252026, category := 'wins') ORDER BY rank"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "leaders",
+        "goalies"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "goalie_stats",
+      null,
+      "table",
+      "Season summary for every NHL goalie (wins, save %, GAA, shutouts)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "player-stats",
+        "vgi.doc_llm": "One row per goalie for a season and game type: games played and started, wins, losses, OT losses, shots against, saves, goals against, save % (0-1), goals-against average, shutouts, and total TOI in seconds. Apply your own games-played minimum when ranking rate stats.",
+        "vgi.doc_md": "The NHL.com/stats goalie summary report for a season and game type.",
+        "vgi.example_queries": "[{\"description\": \"2025-26 save-percentage leaders with at least 40 games.\", \"sql\": \"SELECT player_name, team_abbrevs, games_played, save_pct, goals_against_average FROM nhl.main.goalie_stats(season := 20252026) WHERE games_played >= 40 ORDER BY save_pct DESC LIMIT 10\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Goalie full name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Goalie last name\"},{\"name\":\"team_abbrevs\",\"type\":\"VARCHAR\",\"description\":\"Team codes the goalie played for this season, comma-separated\"},{\"name\":\"shoots_catches\",\"type\":\"VARCHAR\",\"description\":\"Catching hand: L or R\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Games played\"},{\"name\":\"games_started\",\"type\":\"INTEGER\",\"description\":\"Games started\"},{\"name\":\"wins\",\"type\":\"INTEGER\",\"description\":\"Wins credited\"},{\"name\":\"losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses credited\"},{\"name\":\"ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses credited\"},{\"name\":\"ties\",\"type\":\"INTEGER\",\"description\":\"Ties credited (before 2005-06); NULL otherwise\"},{\"name\":\"shots_against\",\"type\":\"INTEGER\",\"description\":\"Shots on goal faced\"},{\"name\":\"saves\",\"type\":\"INTEGER\",\"description\":\"Saves\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed\"},{\"name\":\"save_pct\",\"type\":\"DOUBLE\",\"description\":\"Saves divided by shots against (0-1)\"},{\"name\":\"goals_against_average\",\"type\":\"DOUBLE\",\"description\":\"Goals allowed per 60 minutes played\"},{\"name\":\"shutouts\",\"type\":\"INTEGER\",\"description\":\"Shutouts\"},{\"name\":\"time_on_ice_seconds\",\"type\":\"INTEGER\",\"description\":\"Total time on ice, in seconds\"},{\"name\":\"goals\",\"type\":\"INTEGER\",\"description\":\"Goals scored by the goalie\"},{\"name\":\"assists\",\"type\":\"INTEGER\",\"description\":\"Assists credited to the goalie\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Points credited to the goalie\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"}]",
+        "vgi.title": "NHL Goalie Season Stats"
+      },
+      null,
+      [
+        "season",
+        "game_type"
+      ],
+      [
+        "INTEGER",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22608,
+      [
+        "SELECT player_name, team_abbrevs, games_played, save_pct, goals_against_average FROM nhl.main.goalie_stats(season := 20252026) WHERE games_played >= 40 ORDER BY save_pct DESC LIMIT 10"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "goalies"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "play_by_play",
+      null,
+      "table",
+      "Every event of one NHL game with x/y rink coordinates and involved players",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "games",
+        "vgi.doc_llm": "One row per game event in order (sort_order): faceoffs, shots on goal, missed and blocked shots, goals, hits, giveaways, takeaways, penalties, and stoppages, with period clock, game_seconds, situation code (strength), owning team, x/y rink coordinates in feet, shot type, and primary/secondary players with names. For a goal the primary player is the scorer and assists are in assist1/assist2.",
+        "vgi.doc_md": "Gamecenter play-by-play. Coordinates are feet from centre ice; `situation_code` 1551 means 5-on-5 with both goalies in net.",
+        "vgi.example_queries": "[{\"description\": \"Every goal in the 2025-26 opener with scorer and location.\", \"sql\": \"SELECT period, time_in_period, event_owner_team_abbrev, primary_player_name, shot_type, x_coord, y_coord, away_score, home_score FROM nhl.main.play_by_play(2025020001) WHERE event_type = 'goal' ORDER BY sort_order\"}, {\"description\": \"Shot attempts by team and type of outcome.\", \"sql\": \"SELECT event_owner_team_abbrev, event_type, count(*) AS events FROM nhl.main.play_by_play(2025020001) WHERE event_type IN ('goal', 'shot-on-goal', 'missed-shot', 'blocked-shot') GROUP BY ALL ORDER BY ALL\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id\"},{\"name\":\"event_id\",\"type\":\"INTEGER\",\"description\":\"Event id, unique within the game\"},{\"name\":\"sort_order\",\"type\":\"INTEGER\",\"description\":\"Chronological ordering key for events\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Period number; 4 and above are overtime (5 is a regular-season shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Period type: REG, OT, or SO\"},{\"name\":\"time_in_period\",\"type\":\"VARCHAR\",\"description\":\"Elapsed time in the period as MM:SS\"},{\"name\":\"time_remaining\",\"type\":\"VARCHAR\",\"description\":\"Time remaining in the period as MM:SS\"},{\"name\":\"game_seconds\",\"type\":\"INTEGER\",\"description\":\"Seconds since the opening faceoff, assuming 20-minute periods\"},{\"name\":\"situation_code\",\"type\":\"VARCHAR\",\"description\":\"Four digits: away goalie in net, away skaters, home skaters, home goalie in net (1551 = 5v5)\"},{\"name\":\"home_team_defending_side\",\"type\":\"VARCHAR\",\"description\":\"Side of the rink the home team defends: left or right\"},{\"name\":\"type_code\",\"type\":\"INTEGER\",\"description\":\"NHL numeric event type code\"},{\"name\":\"event_type\",\"type\":\"VARCHAR\",\"description\":\"Event type, such as goal, shot-on-goal, missed-shot, blocked-shot, hit, faceoff, or penalty\"},{\"name\":\"event_owner_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id credited with the event\"},{\"name\":\"event_owner_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the team credited with the event\"},{\"name\":\"x_coord\",\"type\":\"INTEGER\",\"description\":\"Rink x coordinate in feet from centre ice (-100 to 100)\"},{\"name\":\"y_coord\",\"type\":\"INTEGER\",\"description\":\"Rink y coordinate in feet from centre ice (-42.5 to 42.5)\"},{\"name\":\"zone_code\",\"type\":\"VARCHAR\",\"description\":\"Zone relative to the event owner: O offensive, D defensive, N neutral\"},{\"name\":\"shot_type\",\"type\":\"VARCHAR\",\"description\":\"Shot type, such as wrist, snap, slap, backhand, tip-in, or deflected\"},{\"name\":\"reason\",\"type\":\"VARCHAR\",\"description\":\"Reason for a miss or stoppage, such as wide-of-net or icing\"},{\"name\":\"secondary_reason\",\"type\":\"VARCHAR\",\"description\":\"Secondary stoppage reason, such as tv-timeout\"},{\"name\":\"penalty_severity\",\"type\":\"VARCHAR\",\"description\":\"Penalty class: MIN minor, MAJ major, MIS misconduct, BEN bench\"},{\"name\":\"penalty_type\",\"type\":\"VARCHAR\",\"description\":\"Penalty infraction, such as tripping or slashing\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty duration in minutes\"},{\"name\":\"primary_player_id\",\"type\":\"INTEGER\",\"description\":\"Main actor: scorer, shooter, faceoff winner, hitter, penalized player, or puck carrier\"},{\"name\":\"primary_player_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the primary player\"},{\"name\":\"secondary_player_id\",\"type\":\"INTEGER\",\"description\":\"Counterpart: primary assist, goalie or blocker, faceoff loser, player hit, or penalty drawer\"},{\"name\":\"secondary_player_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the secondary player\"},{\"name\":\"assist1_player_id\",\"type\":\"INTEGER\",\"description\":\"Primary assist on a goal\"},{\"name\":\"assist2_player_id\",\"type\":\"INTEGER\",\"description\":\"Secondary assist on a goal\"},{\"name\":\"goalie_in_net_id\",\"type\":\"INTEGER\",\"description\":\"Defending goalie on a shot or goal; NULL for an empty net\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Away team score after a goal\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team score after a goal\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Away team shots on goal after a shot\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal after a shot\"}]",
+        "vgi.title": "NHL Play-By-Play"
+      },
+      null,
+      [
+        "game_id"
+      ],
+      [
+        "BIGINT"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22609,
+      [
+        "SELECT period, time_in_period, event_owner_team_abbrev, primary_player_name, shot_type, x_coord, y_coord, away_score, home_score FROM nhl.main.play_by_play(2025020001) WHERE event_type = 'goal' ORDER BY sort_order",
+        "SELECT event_owner_team_abbrev, event_type, count(*) AS events FROM nhl.main.play_by_play(2025020001) WHERE event_type IN ('goal', 'shot-on-goal', 'missed-shot', 'blocked-shot') GROUP BY ALL ORDER BY ALL"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "games",
+        "play-by-play",
+        "shots"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "player",
+      null,
+      "table",
+      "One NHL player's profile, draft details, and career NHL totals",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "players",
+        "vgi.doc_llm": "A single row for one player id: name, active flag, current team, position, handedness, size, birth date and place, draft year/round/pick, Hall of Fame flag, and NHL career regular-season totals (skater goals/assists/points or goalie wins/shutouts/save %/GAA) plus playoff games and points.",
+        "vgi.doc_md": "An NHL.com player landing page as one row.",
+        "vgi.example_queries": "[{\"description\": \"Connor McDavid's profile and NHL career totals.\", \"sql\": \"SELECT player_name, current_team_abbrev, position, birth_date, draft_year, draft_overall_pick, career_games_played, career_points FROM nhl.main.player(8478402)\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"is_active\",\"type\":\"BOOLEAN\",\"description\":\"Whether the player is currently active\"},{\"name\":\"current_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the current team; NULL for inactive players\"},{\"name\":\"current_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the current team\"},{\"name\":\"current_team_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the current team\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Current jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"shoots_catches\",\"type\":\"VARCHAR\",\"description\":\"Handedness: L or R\"},{\"name\":\"height_inches\",\"type\":\"INTEGER\",\"description\":\"Height in inches\"},{\"name\":\"weight_pounds\",\"type\":\"INTEGER\",\"description\":\"Weight in pounds\"},{\"name\":\"height_cm\",\"type\":\"INTEGER\",\"description\":\"Height in centimetres\"},{\"name\":\"weight_kg\",\"type\":\"INTEGER\",\"description\":\"Weight in kilograms\"},{\"name\":\"birth_date\",\"type\":\"DATE\",\"description\":\"Date of birth\"},{\"name\":\"birth_city\",\"type\":\"VARCHAR\",\"description\":\"City of birth\"},{\"name\":\"birth_state_province\",\"type\":\"VARCHAR\",\"description\":\"State or province of birth, when recorded\"},{\"name\":\"birth_country\",\"type\":\"VARCHAR\",\"description\":\"Three-letter country code of birth\"},{\"name\":\"headshot_url\",\"type\":\"VARCHAR\",\"description\":\"URL of the player's NHL headshot image\"},{\"name\":\"draft_year\",\"type\":\"INTEGER\",\"description\":\"NHL entry draft year; NULL if undrafted\"},{\"name\":\"draft_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the drafting team\"},{\"name\":\"draft_round\",\"type\":\"INTEGER\",\"description\":\"Draft round\"},{\"name\":\"draft_pick_in_round\",\"type\":\"INTEGER\",\"description\":\"Pick number within the draft round\"},{\"name\":\"draft_overall_pick\",\"type\":\"INTEGER\",\"description\":\"Overall draft pick number\"},{\"name\":\"in_hockey_hall_of_fame\",\"type\":\"BOOLEAN\",\"description\":\"Whether the player is in the Hockey Hall of Fame\"},{\"name\":\"in_top_100_all_time\",\"type\":\"BOOLEAN\",\"description\":\"Whether the NHL lists the player among its top 100 ever\"},{\"name\":\"career_games_played\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season games played\"},{\"name\":\"career_goals\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season goals (skaters and goalies)\"},{\"name\":\"career_assists\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season assists\"},{\"name\":\"career_points\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season points; NULL for goalies\"},{\"name\":\"career_wins\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season wins; goalies only\"},{\"name\":\"career_shutouts\",\"type\":\"INTEGER\",\"description\":\"Career NHL regular-season shutouts; goalies only\"},{\"name\":\"career_save_pct\",\"type\":\"DOUBLE\",\"description\":\"Career NHL regular-season save percentage (0-1); goalies only\"},{\"name\":\"career_goals_against_average\",\"type\":\"DOUBLE\",\"description\":\"Career NHL regular-season goals-against average\"},{\"name\":\"career_playoff_games_played\",\"type\":\"INTEGER\",\"description\":\"Career NHL playoff games played\"},{\"name\":\"career_playoff_points\",\"type\":\"INTEGER\",\"description\":\"Career NHL playoff points; NULL for goalies\"}]",
+        "vgi.title": "NHL Player Profile"
+      },
+      null,
+      [
+        "player_id"
+      ],
+      [
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22610,
+      [
+        "SELECT player_name, current_team_abbrev, position, birth_date, draft_year, draft_overall_pick, career_games_played, career_points FROM nhl.main.player(8478402)"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "players"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "player_career",
+      null,
+      "table",
+      "One player's season-by-season lines in every league, regular season and playoffs",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "players",
+        "vgi.doc_llm": "Season-by-season lines for one player id across every league (NHL, AHL, junior, Olympics...), regular season (game_type 2) and playoffs (3). Filter league_abbrev = 'NHL' for NHL totals. Skater columns (goals, points, shots) and goalie columns (wins, save_pct, goals_against_average) share the table; the other set is NULL.",
+        "vgi.doc_md": "Every season line from the player's NHL.com page, including pre-NHL leagues.",
+        "vgi.example_queries": "[{\"description\": \"Connor McDavid's NHL regular-season lines by season.\", \"sql\": \"SELECT season, team_name, games_played, goals, assists, points FROM nhl.main.player_career(8478402) WHERE league_abbrev = 'NHL' AND game_type = 2 ORDER BY season\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"Season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"Game type: 2 regular season, 3 playoffs\"},{\"name\":\"league_abbrev\",\"type\":\"VARCHAR\",\"description\":\"League of the line, such as NHL, AHL, OHL, or OG (Olympics)\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Team name for the line\"},{\"name\":\"sequence\",\"type\":\"INTEGER\",\"description\":\"Order of the line within the season, for players with several teams\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Games played\"},{\"name\":\"goals\",\"type\":\"INTEGER\",\"description\":\"Goals\"},{\"name\":\"assists\",\"type\":\"INTEGER\",\"description\":\"Assists\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Points; NULL for goalies\"},{\"name\":\"plus_minus\",\"type\":\"INTEGER\",\"description\":\"Plus-minus; skaters only\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"},{\"name\":\"power_play_goals\",\"type\":\"INTEGER\",\"description\":\"Power-play goals; skaters only\"},{\"name\":\"power_play_points\",\"type\":\"INTEGER\",\"description\":\"Power-play points; skaters only\"},{\"name\":\"shorthanded_goals\",\"type\":\"INTEGER\",\"description\":\"Shorthanded goals; skaters only\"},{\"name\":\"shorthanded_points\",\"type\":\"INTEGER\",\"description\":\"Shorthanded points; skaters only\"},{\"name\":\"game_winning_goals\",\"type\":\"INTEGER\",\"description\":\"Game-winning goals; skaters only\"},{\"name\":\"overtime_goals\",\"type\":\"INTEGER\",\"description\":\"Overtime goals; skaters only\"},{\"name\":\"shots\",\"type\":\"INTEGER\",\"description\":\"Shots on goal; skaters only\"},{\"name\":\"shooting_pct\",\"type\":\"DOUBLE\",\"description\":\"Goals divided by shots (0-1); NHL skater lines only\"},{\"name\":\"faceoff_win_pct\",\"type\":\"DOUBLE\",\"description\":\"Faceoff win percentage (0-1); NHL skater lines only\"},{\"name\":\"avg_toi\",\"type\":\"VARCHAR\",\"description\":\"Average time on ice per game as MM:SS; NHL skater lines only\"},{\"name\":\"avg_toi_seconds\",\"type\":\"INTEGER\",\"description\":\"Average time on ice per game in seconds\"},{\"name\":\"games_started\",\"type\":\"INTEGER\",\"description\":\"Games started; goalies only\"},{\"name\":\"shots_against\",\"type\":\"INTEGER\",\"description\":\"Shots on goal faced; goalies only\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed; goalies only\"},{\"name\":\"save_pct\",\"type\":\"DOUBLE\",\"description\":\"Save percentage (0-1); goalies only\"},{\"name\":\"shutouts\",\"type\":\"INTEGER\",\"description\":\"Shutouts; goalies only\"},{\"name\":\"wins\",\"type\":\"INTEGER\",\"description\":\"Wins; goalies only\"},{\"name\":\"losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses; goalies only\"},{\"name\":\"ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses; goalies only\"},{\"name\":\"ties\",\"type\":\"INTEGER\",\"description\":\"Ties; goalies only, before 2005-06\"},{\"name\":\"goals_against_average\",\"type\":\"DOUBLE\",\"description\":\"Goals allowed per 60 minutes; goalies only\"},{\"name\":\"time_on_ice\",\"type\":\"VARCHAR\",\"description\":\"Total time on ice as MM:SS; goalies only\"},{\"name\":\"time_on_ice_seconds\",\"type\":\"INTEGER\",\"description\":\"Total time on ice in seconds; goalies only\"}]",
+        "vgi.title": "NHL Player Career Lines"
+      },
+      null,
+      [
+        "player_id"
+      ],
+      [
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22611,
+      [
+        "SELECT season, team_name, games_played, goals, assists, points FROM nhl.main.player_career(8478402) WHERE league_abbrev = 'NHL' AND game_type = 2 ORDER BY season"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "players",
+        "career"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "player_game_log",
+      null,
+      "table",
+      "One NHL player's game-by-game log for a season and game type",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "players",
+        "vgi.doc_llm": "One row per game a player appeared in: player id first, optional season := 20252026 (default current) and game_type := 2 or 3. Skaters get goals, assists, points, plus-minus, shots, shifts, and TOI; goalies get decision, shots against, goals against, save %, and shutouts. game_id joins to box_score().",
+        "vgi.doc_md": "An NHL.com player game log. Rows are newest-first from the source; sort by `game_date`.",
+        "vgi.example_queries": "[{\"description\": \"Connor McDavid's multi-point games in 2025-26.\", \"sql\": \"SELECT game_date, opponent_abbrev, goals, assists, points, toi FROM nhl.main.player_game_log(8478402, season := 20252026) WHERE points >= 2 ORDER BY game_date\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"Season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"Game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id; joins to box_score() and play_by_play()\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local date of the game\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"The player's team code for the game\"},{\"name\":\"opponent_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Opponent team code\"},{\"name\":\"home_road_flag\",\"type\":\"VARCHAR\",\"description\":\"H for a home game, R for a road game\"},{\"name\":\"goals\",\"type\":\"INTEGER\",\"description\":\"Goals\"},{\"name\":\"assists\",\"type\":\"INTEGER\",\"description\":\"Assists\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Points; NULL for goalies\"},{\"name\":\"plus_minus\",\"type\":\"INTEGER\",\"description\":\"Plus-minus; skaters only\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"},{\"name\":\"power_play_goals\",\"type\":\"INTEGER\",\"description\":\"Power-play goals; skaters only\"},{\"name\":\"power_play_points\",\"type\":\"INTEGER\",\"description\":\"Power-play points; skaters only\"},{\"name\":\"shorthanded_goals\",\"type\":\"INTEGER\",\"description\":\"Shorthanded goals; skaters only\"},{\"name\":\"shorthanded_points\",\"type\":\"INTEGER\",\"description\":\"Shorthanded points; skaters only\"},{\"name\":\"game_winning_goals\",\"type\":\"INTEGER\",\"description\":\"Game-winning goals; skaters only\"},{\"name\":\"overtime_goals\",\"type\":\"INTEGER\",\"description\":\"Overtime goals; skaters only\"},{\"name\":\"shots\",\"type\":\"INTEGER\",\"description\":\"Shots on goal; skaters only\"},{\"name\":\"shifts\",\"type\":\"INTEGER\",\"description\":\"Shifts taken; skaters only\"},{\"name\":\"toi\",\"type\":\"VARCHAR\",\"description\":\"Time on ice as MM:SS\"},{\"name\":\"toi_seconds\",\"type\":\"INTEGER\",\"description\":\"Time on ice in seconds\"},{\"name\":\"games_started\",\"type\":\"INTEGER\",\"description\":\"Games started; goalies only\"},{\"name\":\"shots_against\",\"type\":\"INTEGER\",\"description\":\"Shots on goal faced; goalies only\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed; goalies only\"},{\"name\":\"save_pct\",\"type\":\"DOUBLE\",\"description\":\"Save percentage (0-1); goalies only\"},{\"name\":\"shutouts\",\"type\":\"INTEGER\",\"description\":\"Shutouts; goalies only\"},{\"name\":\"decision\",\"type\":\"VARCHAR\",\"description\":\"Goalie decision: W win, L loss, O overtime/shootout loss; NULL otherwise\"}]",
+        "vgi.title": "NHL Player Game Log"
+      },
+      null,
+      [
+        "player_id",
+        "season",
+        "game_type"
+      ],
+      [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22612,
+      [
+        "SELECT game_date, opponent_abbrev, goals, assists, points, toi FROM nhl.main.player_game_log(8478402, season := 20252026) WHERE points >= 2 ORDER BY game_date"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "players",
+        "game-log"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "player_search",
+      null,
+      "table",
+      "Find NHL players (current and historical) by name to get their player ids",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "players",
+        "vgi.doc_llm": "Name search over every NHL player, past and present. Pass the name text first ('mcdavid'); returns player_id (for player(), player_career(), player_game_log()), position, active flag, and current or last team. active_only := true drops retired players.",
+        "vgi.doc_md": "The NHL.com player search index. Matching is the NHL's own fuzzy name match.",
+        "vgi.example_queries": "[{\"description\": \"Find players named Hughes who are active.\", \"sql\": \"SELECT player_id, player_name, position_code, team_abbrev FROM nhl.main.player_search('hughes', active_only := true)\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"position_code\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"active\",\"type\":\"BOOLEAN\",\"description\":\"Whether the player is currently active\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the current team; NULL for inactive players\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the current team\"},{\"name\":\"last_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the most recent team\"},{\"name\":\"last_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the most recent team\"},{\"name\":\"last_season\",\"type\":\"INTEGER\",\"description\":\"Most recent NHL season id played, such as 20252026\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Most recent jersey number\"},{\"name\":\"height_inches\",\"type\":\"INTEGER\",\"description\":\"Height in inches\"},{\"name\":\"weight_pounds\",\"type\":\"INTEGER\",\"description\":\"Weight in pounds\"},{\"name\":\"birth_city\",\"type\":\"VARCHAR\",\"description\":\"City of birth\"},{\"name\":\"birth_state_province\",\"type\":\"VARCHAR\",\"description\":\"State or province of birth, when recorded\"},{\"name\":\"birth_country\",\"type\":\"VARCHAR\",\"description\":\"Three-letter country code of birth\"}]",
+        "vgi.title": "NHL Player Search"
+      },
+      null,
+      [
+        "query",
+        "max_results",
+        "active_only"
+      ],
+      [
+        "VARCHAR",
+        "INTEGER",
+        "BOOLEAN"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22613,
+      [
+        "SELECT player_id, player_name, position_code, team_abbrev FROM nhl.main.player_search('hughes', active_only := true)"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "players",
+        "search"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "playoff_bracket",
+      null,
+      "table",
+      "Stanley Cup playoff series for one year with seeds, series wins, and winners",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "playoffs",
+        "vgi.doc_llm": "Playoff series for a year (the calendar year of the final, e.g. 2025 for the 2024-25 playoffs): round, seeds, games won by each side, and winning/losing team ids. The Stanley Cup Final is series_abbrev = 'SCF'; its winning_team_id is the champion. Empty before the playoffs begin.",
+        "vgi.doc_md": "One row per playoff series, lettered A-O in bracket order.",
+        "vgi.example_queries": "[{\"description\": \"The 2025 playoff bracket by round.\", \"sql\": \"SELECT playoff_round, series_letter, top_seed_team_abbrev, top_seed_wins, bottom_seed_team_abbrev, bottom_seed_wins FROM nhl.main.playoff_bracket(2025) ORDER BY series_letter\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"year\",\"type\":\"INTEGER\",\"description\":\"Playoff year (the calendar year the Stanley Cup Final is played)\"},{\"name\":\"series_letter\",\"type\":\"VARCHAR\",\"description\":\"Series letter, A through O, in bracket order\"},{\"name\":\"series_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Round code: R1, R2, ECF, WCF, or SCF\"},{\"name\":\"series_title\",\"type\":\"VARCHAR\",\"description\":\"Round title, such as 1st Round or Stanley Cup Final\"},{\"name\":\"playoff_round\",\"type\":\"INTEGER\",\"description\":\"Round number from 1 (first round) to 4 (final)\"},{\"name\":\"top_seed_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the higher seed\"},{\"name\":\"top_seed_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the higher seed\"},{\"name\":\"top_seed_team_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the higher seed\"},{\"name\":\"top_seed_rank_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Seed label of the higher seed, such as D1 or WC1\"},{\"name\":\"top_seed_wins\",\"type\":\"INTEGER\",\"description\":\"Games won by the higher seed in the series\"},{\"name\":\"bottom_seed_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the lower seed\"},{\"name\":\"bottom_seed_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the lower seed\"},{\"name\":\"bottom_seed_team_name\",\"type\":\"VARCHAR\",\"description\":\"Full name of the lower seed\"},{\"name\":\"bottom_seed_rank_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Seed label of the lower seed\"},{\"name\":\"bottom_seed_wins\",\"type\":\"INTEGER\",\"description\":\"Games won by the lower seed in the series\"},{\"name\":\"winning_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the series winner; NULL while undecided\"},{\"name\":\"losing_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the series loser; NULL while undecided\"}]",
+        "vgi.title": "NHL Playoff Bracket"
+      },
+      null,
+      [
+        "year"
+      ],
+      [
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22614,
+      [
+        "SELECT playoff_round, series_letter, top_seed_team_abbrev, top_seed_wins, bottom_seed_team_abbrev, bottom_seed_wins FROM nhl.main.playoff_bracket(2025) ORDER BY series_letter"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "playoffs"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "roster",
+      null,
+      "table",
+      "One NHL team's roster for a season with positions and biographical detail",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "players",
+        "vgi.doc_llm": "Players on a team's roster: team code first ('TOR'), optional season := 20252026 (default current). Each row has player_id, name, sweater number, position and group (forwards, defensemen, goalies), handedness, size, and birth date and place. Historical seasons list everyone who appeared for the club.",
+        "vgi.doc_md": "A club roster from NHL.com. The team code is positional; `season` is named.",
+        "vgi.example_queries": "[{\"description\": \"Toronto's 2025-26 defensemen.\", \"sql\": \"SELECT sweater_number, player_name, shoots_catches, height_inches, birth_country FROM nhl.main.roster('TOR', season := 20252026) WHERE position_group = 'defensemen' ORDER BY sweater_number\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id of the roster, such as 20252026\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position_code\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"position_group\",\"type\":\"VARCHAR\",\"description\":\"Roster group: forwards, defensemen, or goalies\"},{\"name\":\"shoots_catches\",\"type\":\"VARCHAR\",\"description\":\"Handedness: L or R\"},{\"name\":\"height_inches\",\"type\":\"INTEGER\",\"description\":\"Height in inches\"},{\"name\":\"weight_pounds\",\"type\":\"INTEGER\",\"description\":\"Weight in pounds\"},{\"name\":\"height_cm\",\"type\":\"INTEGER\",\"description\":\"Height in centimetres\"},{\"name\":\"weight_kg\",\"type\":\"INTEGER\",\"description\":\"Weight in kilograms\"},{\"name\":\"birth_date\",\"type\":\"DATE\",\"description\":\"Date of birth\"},{\"name\":\"birth_city\",\"type\":\"VARCHAR\",\"description\":\"City of birth\"},{\"name\":\"birth_state_province\",\"type\":\"VARCHAR\",\"description\":\"State or province of birth, when recorded\"},{\"name\":\"birth_country\",\"type\":\"VARCHAR\",\"description\":\"Three-letter country code of birth\"},{\"name\":\"headshot_url\",\"type\":\"VARCHAR\",\"description\":\"URL of the player's NHL headshot image\"}]",
+        "vgi.title": "NHL Team Roster"
+      },
+      null,
+      [
+        "team",
+        "season"
+      ],
+      [
+        "VARCHAR",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22615,
+      [
+        "SELECT sweater_number, player_name, shoots_catches, height_inches, birth_country FROM nhl.main.roster('TOR', season := 20252026) WHERE position_group = 'defensemen' ORDER BY sweater_number"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "players",
+        "teams",
+        "rosters"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "schedule",
+      null,
+      "table",
+      "NHL games in the seven days starting on a date, one row per game",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "schedule",
+        "vgi.doc_llm": "Every NHL game in the seven days starting on date (default today): game id, local date, UTC start time, venue, teams, state, and final scores with the winning goalie and game-winning scorer once played. For one day only with shots on goal use scores(); for a team's full season use team_schedule().",
+        "vgi.doc_md": "A seven-day schedule window. `game_state` is FUT before, LIVE/CRIT during, and OFF/FINAL after a game; scores are NULL until the game starts.",
+        "vgi.example_queries": "[{\"description\": \"The first week of the 2025-26 regular season.\", \"sql\": \"SELECT game_date, away_team_abbrev, home_team_abbrev, away_score, home_score FROM nhl.main.schedule(date := DATE '2025-10-07') ORDER BY start_time_utc\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id, such as 2025020001 (season, type, number)\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local calendar date of the game\"},{\"name\":\"start_time_utc\",\"type\":\"TIMESTAMP WITH TIME ZONE\",\"description\":\"Scheduled puck-drop time in UTC\"},{\"name\":\"venue\",\"type\":\"VARCHAR\",\"description\":\"Arena name\"},{\"name\":\"venue_timezone\",\"type\":\"VARCHAR\",\"description\":\"IANA time zone of the arena\"},{\"name\":\"neutral_site\",\"type\":\"BOOLEAN\",\"description\":\"Whether the game is played at a neutral site\"},{\"name\":\"game_state\",\"type\":\"VARCHAR\",\"description\":\"Game state: FUT future, PRE pregame, LIVE/CRIT in progress, FINAL/OFF finished\"},{\"name\":\"game_schedule_state\",\"type\":\"VARCHAR\",\"description\":\"Schedule state: OK, PPD postponed, or CNCL cancelled\"},{\"name\":\"away_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the visiting team\"},{\"name\":\"away_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the visiting team\"},{\"name\":\"away_team_name\",\"type\":\"VARCHAR\",\"description\":\"Visiting team nickname, such as Blackhawks; join teams for the full name\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Visiting team goals; NULL before the game starts\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Visiting team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"home_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the home team\"},{\"name\":\"home_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the home team\"},{\"name\":\"home_team_name\",\"type\":\"VARCHAR\",\"description\":\"Home team nickname, such as Panthers; join teams for the full name\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team goals; NULL before the game starts\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Current or final period number (4+ means overtime/shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Current or final period type: REG, OT, or SO\"},{\"name\":\"last_period_type\",\"type\":\"VARCHAR\",\"description\":\"How a finished game ended: REG, OT, or SO\"},{\"name\":\"winning_goalie_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the winning goalie; schedules only, NULL in scores()\"},{\"name\":\"winning_goalie_name\",\"type\":\"VARCHAR\",\"description\":\"Winning goalie, as an initial and last name\"},{\"name\":\"winning_goal_scorer_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the game-winning goal scorer; schedules only, NULL in scores()\"},{\"name\":\"winning_goal_scorer_name\",\"type\":\"VARCHAR\",\"description\":\"Game-winning goal scorer, as initial and last name\"},{\"name\":\"game_center_url\",\"type\":\"VARCHAR\",\"description\":\"NHL.com GameCenter URL for the game\"}]",
+        "vgi.title": "NHL Schedule Week"
+      },
+      null,
+      [
+        "date"
+      ],
+      [
+        "DATE"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22616,
+      [
+        "SELECT game_date, away_team_abbrev, home_team_abbrev, away_score, home_score FROM nhl.main.schedule(date := DATE '2025-10-07') ORDER BY start_time_utc"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "schedule"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "scores",
+      null,
+      "table",
+      "NHL games on one date with live or final scores and shots on goal",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "schedule",
+        "vgi.doc_llm": "Games on a single date (default today) with score, shots on goal, current or final period, and how the game ended (REG, OT, SO). Use game_id with box_score() or play_by_play() for detail.",
+        "vgi.doc_md": "One day's scoreboard. Live games report the current period and running score.",
+        "vgi.example_queries": "[{\"description\": \"Opening night of 2025-26 with shots on goal.\", \"sql\": \"SELECT away_team_abbrev, away_score, home_team_abbrev, home_score, last_period_type FROM nhl.main.scores(date := DATE '2025-10-07') ORDER BY start_time_utc\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id, such as 2025020001 (season, type, number)\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local calendar date of the game\"},{\"name\":\"start_time_utc\",\"type\":\"TIMESTAMP WITH TIME ZONE\",\"description\":\"Scheduled puck-drop time in UTC\"},{\"name\":\"venue\",\"type\":\"VARCHAR\",\"description\":\"Arena name\"},{\"name\":\"venue_timezone\",\"type\":\"VARCHAR\",\"description\":\"IANA time zone of the arena\"},{\"name\":\"neutral_site\",\"type\":\"BOOLEAN\",\"description\":\"Whether the game is played at a neutral site\"},{\"name\":\"game_state\",\"type\":\"VARCHAR\",\"description\":\"Game state: FUT future, PRE pregame, LIVE/CRIT in progress, FINAL/OFF finished\"},{\"name\":\"game_schedule_state\",\"type\":\"VARCHAR\",\"description\":\"Schedule state: OK, PPD postponed, or CNCL cancelled\"},{\"name\":\"away_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the visiting team\"},{\"name\":\"away_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the visiting team\"},{\"name\":\"away_team_name\",\"type\":\"VARCHAR\",\"description\":\"Visiting team nickname, such as Blackhawks; join teams for the full name\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Visiting team goals; NULL before the game starts\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Visiting team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"home_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the home team\"},{\"name\":\"home_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the home team\"},{\"name\":\"home_team_name\",\"type\":\"VARCHAR\",\"description\":\"Home team nickname, such as Panthers; join teams for the full name\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team goals; NULL before the game starts\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Current or final period number (4+ means overtime/shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Current or final period type: REG, OT, or SO\"},{\"name\":\"last_period_type\",\"type\":\"VARCHAR\",\"description\":\"How a finished game ended: REG, OT, or SO\"},{\"name\":\"winning_goalie_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the winning goalie; schedules only, NULL in scores()\"},{\"name\":\"winning_goalie_name\",\"type\":\"VARCHAR\",\"description\":\"Winning goalie, as an initial and last name\"},{\"name\":\"winning_goal_scorer_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the game-winning goal scorer; schedules only, NULL in scores()\"},{\"name\":\"winning_goal_scorer_name\",\"type\":\"VARCHAR\",\"description\":\"Game-winning goal scorer, as initial and last name\"},{\"name\":\"game_center_url\",\"type\":\"VARCHAR\",\"description\":\"NHL.com GameCenter URL for the game\"}]",
+        "vgi.title": "NHL Scores By Date"
+      },
+      null,
+      [
+        "date"
+      ],
+      [
+        "DATE"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22617,
+      [
+        "SELECT away_team_abbrev, away_score, home_team_abbrev, home_score, last_period_type FROM nhl.main.scores(date := DATE '2025-10-07') ORDER BY start_time_utc"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "schedule",
+        "scores"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "shift_chart",
+      null,
+      "table",
+      "Every player shift of one NHL game with start, end, and duration",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "games",
+        "vgi.doc_llm": "One row per player shift in a game: player, team, period, shift number, start and end as period clock strings and as seconds since the opening faceoff, and duration. Join start_seconds/end_seconds with play_by_play().game_seconds to find who was on the ice for an event.",
+        "vgi.doc_md": "NHL stats-service shift chart; goal markers in the source are omitted.",
+        "vgi.example_queries": "[{\"description\": \"Total ice time and shifts per player in the 2025-26 opener.\", \"sql\": \"SELECT team_abbrev, player_name, count(*) AS shifts, sum(duration_seconds) AS seconds FROM nhl.main.shift_chart(2025020001) GROUP BY ALL ORDER BY seconds DESC\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id\"},{\"name\":\"shift_id\",\"type\":\"BIGINT\",\"description\":\"Shift record id\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Period number\"},{\"name\":\"shift_number\",\"type\":\"INTEGER\",\"description\":\"The player's shift number in the game\"},{\"name\":\"start_time\",\"type\":\"VARCHAR\",\"description\":\"Shift start as elapsed MM:SS in the period\"},{\"name\":\"end_time\",\"type\":\"VARCHAR\",\"description\":\"Shift end as elapsed MM:SS in the period\"},{\"name\":\"duration\",\"type\":\"VARCHAR\",\"description\":\"Shift length as MM:SS\"},{\"name\":\"start_seconds\",\"type\":\"INTEGER\",\"description\":\"Shift start in seconds since the opening faceoff\"},{\"name\":\"end_seconds\",\"type\":\"INTEGER\",\"description\":\"Shift end in seconds since the opening faceoff\"},{\"name\":\"duration_seconds\",\"type\":\"INTEGER\",\"description\":\"Shift length in seconds\"}]",
+        "vgi.title": "NHL Shift Chart"
+      },
+      null,
+      [
+        "game_id"
+      ],
+      [
+        "BIGINT"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22618,
+      [
+        "SELECT team_abbrev, player_name, count(*) AS shifts, sum(duration_seconds) AS seconds FROM nhl.main.shift_chart(2025020001) GROUP BY ALL ORDER BY seconds DESC"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "games",
+        "shifts"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "skater_leaders",
+      null,
+      "table",
+      "NHL skater leaderboards by category for a season and game type",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "leaders",
+        "vgi.doc_llm": "Ranked skater leaders in categories points, goals, assists, plusMinus, goalsPp, goalsSh, penaltyMins, faceoffLeaders (0-1), and toi (seconds per game). Long format: one row per category and rank, with the stat in value. season defaults to the current season and game_type to the regular season.",
+        "vgi.doc_md": "The NHL.com leaderboards; `per_category` sets players per category (default 10).",
+        "vgi.example_queries": "[{\"description\": \"The 2025-26 top-ten point scorers.\", \"sql\": \"SELECT rank, player_name, team_abbrev, value AS points FROM nhl.main.skater_leaders(season := 20252026, category := 'points') ORDER BY rank\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id the leaderboard covers\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season, 3 playoffs\"},{\"name\":\"category\",\"type\":\"VARCHAR\",\"description\":\"Leader category, such as points, goals, or savePctg\"},{\"name\":\"rank\",\"type\":\"INTEGER\",\"description\":\"Position in the NHL's ordered leader list (1 = leader)\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"first_name\",\"type\":\"VARCHAR\",\"description\":\"Player first name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"sweater_number\",\"type\":\"INTEGER\",\"description\":\"Jersey number\"},{\"name\":\"position\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, D, or G\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the player's team\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Oilers\"},{\"name\":\"value\",\"type\":\"DOUBLE\",\"description\":\"Category value: a count, a 0-1 percentage, goals-against average, or TOI seconds per game\"}]",
+        "vgi.title": "NHL Skater Leaders"
+      },
+      null,
+      [
+        "season",
+        "per_category",
+        "game_type",
+        "category"
+      ],
+      [
+        "INTEGER",
+        "INTEGER",
+        "INTEGER",
+        "VARCHAR"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22619,
+      [
+        "SELECT rank, player_name, team_abbrev, value AS points FROM nhl.main.skater_leaders(season := 20252026, category := 'points') ORDER BY rank"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "leaders",
+        "skaters"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "skater_realtime_stats",
+      null,
+      "table",
+      "Season hits, blocks, giveaways, takeaways, and shot attempts for every skater",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "player-stats",
+        "vgi.doc_llm": "One row per skater with the NHL's real-time event counts and per-60 rates: hits, blocked shots, giveaways, takeaways, missed shots by kind, total shot attempts, empty-net goals and points, and first goals. Join to skater_stats() on player_id for scoring.",
+        "vgi.doc_md": "The NHL.com/stats skater real-time report for a season and game type.",
+        "vgi.example_queries": "[{\"description\": \"The most physical skaters of 2025-26.\", \"sql\": \"SELECT player_name, team_abbrevs, hits, blocked_shots FROM nhl.main.skater_realtime_stats(season := 20252026) ORDER BY hits DESC LIMIT 10\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"team_abbrevs\",\"type\":\"VARCHAR\",\"description\":\"Team codes the player skated for this season, comma-separated\"},{\"name\":\"position_code\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, or D\"},{\"name\":\"shoots_catches\",\"type\":\"VARCHAR\",\"description\":\"Handedness: L or R\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Games played\"},{\"name\":\"hits\",\"type\":\"INTEGER\",\"description\":\"Body checks delivered\"},{\"name\":\"hits_per_60\",\"type\":\"DOUBLE\",\"description\":\"Hits per 60 minutes of ice time\"},{\"name\":\"blocked_shots\",\"type\":\"INTEGER\",\"description\":\"Opponent shots blocked\"},{\"name\":\"blocked_shots_per_60\",\"type\":\"DOUBLE\",\"description\":\"Blocked shots per 60 minutes of ice time\"},{\"name\":\"giveaways\",\"type\":\"INTEGER\",\"description\":\"Giveaways\"},{\"name\":\"giveaways_per_60\",\"type\":\"DOUBLE\",\"description\":\"Giveaways per 60 minutes of ice time\"},{\"name\":\"takeaways\",\"type\":\"INTEGER\",\"description\":\"Takeaways\"},{\"name\":\"takeaways_per_60\",\"type\":\"DOUBLE\",\"description\":\"Takeaways per 60 minutes of ice time\"},{\"name\":\"total_shot_attempts\",\"type\":\"INTEGER\",\"description\":\"All shot attempts: on goal, missed, and blocked\"},{\"name\":\"missed_shots\",\"type\":\"INTEGER\",\"description\":\"Shot attempts that missed the net\"},{\"name\":\"missed_shot_wide_of_net\",\"type\":\"INTEGER\",\"description\":\"Missed shots wide of the net\"},{\"name\":\"missed_shot_over_net\",\"type\":\"INTEGER\",\"description\":\"Missed shots over the net\"},{\"name\":\"missed_shot_goalpost\",\"type\":\"INTEGER\",\"description\":\"Missed shots that hit a goalpost\"},{\"name\":\"missed_shot_crossbar\",\"type\":\"INTEGER\",\"description\":\"Missed shots that hit the crossbar\"},{\"name\":\"missed_shot_short\",\"type\":\"INTEGER\",\"description\":\"Missed shots that fell short\"},{\"name\":\"missed_shot_failed_bank_attempt\",\"type\":\"INTEGER\",\"description\":\"Missed bank-shot attempts\"},{\"name\":\"shot_attempts_blocked\",\"type\":\"INTEGER\",\"description\":\"The player's own shot attempts that were blocked\"},{\"name\":\"empty_net_goals\",\"type\":\"INTEGER\",\"description\":\"Empty-net goals\"},{\"name\":\"empty_net_assists\",\"type\":\"INTEGER\",\"description\":\"Empty-net assists\"},{\"name\":\"empty_net_points\",\"type\":\"INTEGER\",\"description\":\"Empty-net points\"},{\"name\":\"first_goals\",\"type\":\"INTEGER\",\"description\":\"Games in which the player scored the first goal\"},{\"name\":\"overtime_goals\",\"type\":\"INTEGER\",\"description\":\"Overtime goals\"},{\"name\":\"time_on_ice_per_game_seconds\",\"type\":\"DOUBLE\",\"description\":\"Average time on ice per game, in seconds\"}]",
+        "vgi.title": "NHL Skater Real-Time Stats"
+      },
+      null,
+      [
+        "season",
+        "game_type"
+      ],
+      [
+        "INTEGER",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22620,
+      [
+        "SELECT player_name, team_abbrevs, hits, blocked_shots FROM nhl.main.skater_realtime_stats(season := 20252026) ORDER BY hits DESC LIMIT 10"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "skaters"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "skater_stats",
+      null,
+      "table",
+      "Season scoring summary for every NHL skater (goals, assists, points, TOI)",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "player-stats",
+        "vgi.doc_llm": "One row per skater for a season and game type: games, goals, assists, points, plus-minus, PIM, points per game, even-strength/power-play/shorthanded goals and points, game-winning and OT goals, shots, shooting %, faceoff %, and average TOI in seconds. Traded players have one combined row; team_abbrevs lists every club. Percentages are 0-1 fractions.",
+        "vgi.doc_md": "The NHL.com/stats skater summary report. `season` is an 8-digit id such as 20252026 (default current); `game_type` 2 regular season, 3 playoffs.",
+        "vgi.example_queries": "[{\"description\": \"The 2025-26 regular-season scoring leaders.\", \"sql\": \"SELECT player_name, team_abbrevs, games_played, goals, assists, points FROM nhl.main.skater_stats(season := 20252026) ORDER BY points DESC LIMIT 10\"}, {\"description\": \"2025-26 playoff goal leaders.\", \"sql\": \"SELECT player_name, team_abbrevs, goals FROM nhl.main.skater_stats(season := 20252026, game_type := 3) ORDER BY goals DESC LIMIT 10\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"player_id\",\"type\":\"INTEGER\",\"description\":\"Stable NHL player id\"},{\"name\":\"player_name\",\"type\":\"VARCHAR\",\"description\":\"Player full name\"},{\"name\":\"last_name\",\"type\":\"VARCHAR\",\"description\":\"Player last name\"},{\"name\":\"team_abbrevs\",\"type\":\"VARCHAR\",\"description\":\"Team codes the player skated for this season, in order, comma-separated\"},{\"name\":\"position_code\",\"type\":\"VARCHAR\",\"description\":\"Position code: C, L, R, or D\"},{\"name\":\"shoots_catches\",\"type\":\"VARCHAR\",\"description\":\"Handedness: L or R\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Games played\"},{\"name\":\"goals\",\"type\":\"INTEGER\",\"description\":\"Goals\"},{\"name\":\"assists\",\"type\":\"INTEGER\",\"description\":\"Assists\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Points (goals plus assists)\"},{\"name\":\"plus_minus\",\"type\":\"INTEGER\",\"description\":\"Plus-minus\"},{\"name\":\"penalty_minutes\",\"type\":\"INTEGER\",\"description\":\"Penalty minutes\"},{\"name\":\"points_per_game\",\"type\":\"DOUBLE\",\"description\":\"Points per game played\"},{\"name\":\"even_strength_goals\",\"type\":\"INTEGER\",\"description\":\"Even-strength goals\"},{\"name\":\"even_strength_points\",\"type\":\"INTEGER\",\"description\":\"Even-strength points\"},{\"name\":\"power_play_goals\",\"type\":\"INTEGER\",\"description\":\"Power-play goals\"},{\"name\":\"power_play_points\",\"type\":\"INTEGER\",\"description\":\"Power-play points\"},{\"name\":\"shorthanded_goals\",\"type\":\"INTEGER\",\"description\":\"Shorthanded goals\"},{\"name\":\"shorthanded_points\",\"type\":\"INTEGER\",\"description\":\"Shorthanded points\"},{\"name\":\"game_winning_goals\",\"type\":\"INTEGER\",\"description\":\"Game-winning goals\"},{\"name\":\"overtime_goals\",\"type\":\"INTEGER\",\"description\":\"Overtime goals\"},{\"name\":\"shots\",\"type\":\"INTEGER\",\"description\":\"Shots on goal\"},{\"name\":\"shooting_pct\",\"type\":\"DOUBLE\",\"description\":\"Goals divided by shots on goal (0-1)\"},{\"name\":\"faceoff_win_pct\",\"type\":\"DOUBLE\",\"description\":\"Faceoffs won divided by faceoffs taken (0-1); NULL without faceoffs\"},{\"name\":\"time_on_ice_per_game_seconds\",\"type\":\"DOUBLE\",\"description\":\"Average time on ice per game, in seconds\"}]",
+        "vgi.title": "NHL Skater Season Stats"
+      },
+      null,
+      [
+        "season",
+        "game_type"
+      ],
+      [
+        "INTEGER",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22621,
+      [
+        "SELECT player_name, team_abbrevs, games_played, goals, assists, points FROM nhl.main.skater_stats(season := 20252026) ORDER BY points DESC LIMIT 10",
+        "SELECT player_name, team_abbrevs, goals FROM nhl.main.skater_stats(season := 20252026, game_type := 3) ORDER BY goals DESC LIMIT 10"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "skaters"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "standings",
+      null,
+      "table",
+      "NHL standings on any date back to 1917-18, one row per team",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "standings",
+        "vgi.doc_llm": "League standings as they stood on a date, one row per team: points, record (wins, regulation losses, OT losses), point percentage, regulation wins, goal differential, home/road/last-10 splits, streak, conference/division/wild-card ranks, and clinch markers. Pass the day as the named date argument (see the example); a season's final standings are on its last regular-season day, listed in the standings_seasons table.",
+        "vgi.doc_md": "NHL standings snapshot for `date` (default today). Ranks come from the NHL's own ordering, so `division_rank = 1` is the division leader. Older seasons have no conferences, divisions, or OT losses; those columns are NULL or zero.",
+        "vgi.example_queries": "[{\"description\": \"Final 2023-24 Atlantic Division table.\", \"sql\": \"SELECT division_rank, team_name, wins, losses, ot_losses, points FROM nhl.main.standings(date := DATE '2024-04-18') WHERE division_name = 'Atlantic' ORDER BY division_rank\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 2 regular season\"},{\"name\":\"standings_date\",\"type\":\"DATE\",\"description\":\"Date the standings snapshot describes\"},{\"name\":\"team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter team code, such as TOR\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Full team name, such as Toronto Maple Leafs\"},{\"name\":\"team_common_name\",\"type\":\"VARCHAR\",\"description\":\"Team nickname, such as Maple Leafs\"},{\"name\":\"team_place_name\",\"type\":\"VARCHAR\",\"description\":\"Team location, such as Toronto\"},{\"name\":\"conference_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Conference code: E or W\"},{\"name\":\"conference_name\",\"type\":\"VARCHAR\",\"description\":\"Conference name, such as Eastern\"},{\"name\":\"division_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Division code, such as A, M, C, or P\"},{\"name\":\"division_name\",\"type\":\"VARCHAR\",\"description\":\"Division name, such as Atlantic\"},{\"name\":\"league_rank\",\"type\":\"INTEGER\",\"description\":\"League-wide rank (1 = best)\"},{\"name\":\"conference_rank\",\"type\":\"INTEGER\",\"description\":\"Position within the conference\"},{\"name\":\"division_rank\",\"type\":\"INTEGER\",\"description\":\"Position within the division\"},{\"name\":\"wildcard_rank\",\"type\":\"INTEGER\",\"description\":\"Wild-card rank; 0 for division-spot holders\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Count of games played so far\"},{\"name\":\"wins\",\"type\":\"INTEGER\",\"description\":\"Wins, including overtime and shootout wins\"},{\"name\":\"losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses\"},{\"name\":\"ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses (one point each)\"},{\"name\":\"ties\",\"type\":\"INTEGER\",\"description\":\"Ties, before 2005-06\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Standings points\"},{\"name\":\"point_pct\",\"type\":\"DOUBLE\",\"description\":\"Points divided by points available (0-1)\"},{\"name\":\"regulation_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation wins, the first tiebreaker\"},{\"name\":\"regulation_plus_ot_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation plus overtime wins\"},{\"name\":\"shootout_wins\",\"type\":\"INTEGER\",\"description\":\"Games won in a shootout\"},{\"name\":\"shootout_losses\",\"type\":\"INTEGER\",\"description\":\"Games lost in a shootout\"},{\"name\":\"goals_for\",\"type\":\"INTEGER\",\"description\":\"Goals scored\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed\"},{\"name\":\"goal_differential\",\"type\":\"INTEGER\",\"description\":\"Goals for minus goals against\"},{\"name\":\"home_wins\",\"type\":\"INTEGER\",\"description\":\"Wins at home\"},{\"name\":\"home_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses at home\"},{\"name\":\"home_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses at home\"},{\"name\":\"home_points\",\"type\":\"INTEGER\",\"description\":\"Points earned at home\"},{\"name\":\"road_wins\",\"type\":\"INTEGER\",\"description\":\"Wins on the road\"},{\"name\":\"road_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses on the road\"},{\"name\":\"road_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses on the road\"},{\"name\":\"road_points\",\"type\":\"INTEGER\",\"description\":\"Points earned on the road\"},{\"name\":\"last_10_wins\",\"type\":\"INTEGER\",\"description\":\"Wins in the last ten games\"},{\"name\":\"last_10_losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses in the last ten games\"},{\"name\":\"last_10_ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses in the last ten games\"},{\"name\":\"streak_code\",\"type\":\"VARCHAR\",\"description\":\"Streak type: W, L, or OT\"},{\"name\":\"streak_count\",\"type\":\"INTEGER\",\"description\":\"Length of the current streak\"},{\"name\":\"clinch_indicator\",\"type\":\"VARCHAR\",\"description\":\"Clinch: p Presidents' Trophy, z conference, y division, x berth, e out\"},{\"name\":\"team_logo_url\",\"type\":\"VARCHAR\",\"description\":\"Team logo SVG URL\"}]",
+        "vgi.title": "NHL Standings By Date"
+      },
+      null,
+      [
+        "date"
+      ],
+      [
+        "DATE"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22622,
+      [
+        "SELECT division_rank, team_name, wins, losses, ot_losses, points FROM nhl.main.standings(date := DATE '2024-04-18') WHERE division_name = 'Atlantic' ORDER BY division_rank"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "standings"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "team_schedule",
+      null,
+      "table",
+      "One NHL team's full season schedule and results, including preseason and playoffs",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "schedule",
+        "vgi.doc_llm": "Every game of one team's season: team code first (e.g. 'TOR'), optional season := 20252026 (default current). Includes preseason (game_type 1), regular season (2), and playoffs (3) with final scores, so filter game_type = 2 for the 82-game schedule.",
+        "vgi.doc_md": "A club's season schedule. The team code is positional; `season` is named.",
+        "vgi.example_queries": "[{\"description\": \"Toronto's 2025-26 regular-season home results.\", \"sql\": \"SELECT game_date, away_team_abbrev, away_score, home_score FROM nhl.main.team_schedule('TOR', season := 20252026) WHERE game_type = 2 AND home_team_abbrev = 'TOR' ORDER BY game_date\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"game_id\",\"type\":\"BIGINT\",\"description\":\"NHL game id, such as 2025020001 (season, type, number)\"},{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"game_date\",\"type\":\"DATE\",\"description\":\"Local calendar date of the game\"},{\"name\":\"start_time_utc\",\"type\":\"TIMESTAMP WITH TIME ZONE\",\"description\":\"Scheduled puck-drop time in UTC\"},{\"name\":\"venue\",\"type\":\"VARCHAR\",\"description\":\"Arena name\"},{\"name\":\"venue_timezone\",\"type\":\"VARCHAR\",\"description\":\"IANA time zone of the arena\"},{\"name\":\"neutral_site\",\"type\":\"BOOLEAN\",\"description\":\"Whether the game is played at a neutral site\"},{\"name\":\"game_state\",\"type\":\"VARCHAR\",\"description\":\"Game state: FUT future, PRE pregame, LIVE/CRIT in progress, FINAL/OFF finished\"},{\"name\":\"game_schedule_state\",\"type\":\"VARCHAR\",\"description\":\"Schedule state: OK, PPD postponed, or CNCL cancelled\"},{\"name\":\"away_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the visiting team\"},{\"name\":\"away_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the visiting team\"},{\"name\":\"away_team_name\",\"type\":\"VARCHAR\",\"description\":\"Visiting team nickname, such as Blackhawks; join teams for the full name\"},{\"name\":\"away_score\",\"type\":\"INTEGER\",\"description\":\"Visiting team goals; NULL before the game starts\"},{\"name\":\"away_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Visiting team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"home_team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id of the home team\"},{\"name\":\"home_team_abbrev\",\"type\":\"VARCHAR\",\"description\":\"Three-letter code of the home team\"},{\"name\":\"home_team_name\",\"type\":\"VARCHAR\",\"description\":\"Home team nickname, such as Panthers; join teams for the full name\"},{\"name\":\"home_score\",\"type\":\"INTEGER\",\"description\":\"Home team goals; NULL before the game starts\"},{\"name\":\"home_shots_on_goal\",\"type\":\"INTEGER\",\"description\":\"Home team shots on goal; only scores() reports it, NULL in schedules\"},{\"name\":\"period\",\"type\":\"INTEGER\",\"description\":\"Current or final period number (4+ means overtime/shootout)\"},{\"name\":\"period_type\",\"type\":\"VARCHAR\",\"description\":\"Current or final period type: REG, OT, or SO\"},{\"name\":\"last_period_type\",\"type\":\"VARCHAR\",\"description\":\"How a finished game ended: REG, OT, or SO\"},{\"name\":\"winning_goalie_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the winning goalie; schedules only, NULL in scores()\"},{\"name\":\"winning_goalie_name\",\"type\":\"VARCHAR\",\"description\":\"Winning goalie, as an initial and last name\"},{\"name\":\"winning_goal_scorer_id\",\"type\":\"INTEGER\",\"description\":\"Player id of the game-winning goal scorer; schedules only, NULL in scores()\"},{\"name\":\"winning_goal_scorer_name\",\"type\":\"VARCHAR\",\"description\":\"Game-winning goal scorer, as initial and last name\"},{\"name\":\"game_center_url\",\"type\":\"VARCHAR\",\"description\":\"NHL.com GameCenter URL for the game\"}]",
+        "vgi.title": "NHL Team Season Schedule"
+      },
+      null,
+      [
+        "team",
+        "season"
+      ],
+      [
+        "VARCHAR",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22623,
+      [
+        "SELECT game_date, away_team_abbrev, away_score, home_score FROM nhl.main.team_schedule('TOR', season := 20252026) WHERE game_type = 2 AND home_team_abbrev = 'TOR' ORDER BY game_date"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "schedule",
+        "teams"
+      ]
+    ],
+    [
+      "nhl",
+      "22592",
+      "main",
+      "team_stats",
+      null,
+      "table",
+      "Season team summary: record, goals, shots, special teams, faceoffs",
+      null,
+      {
+        "provider": "nhl",
+        "vgi.category": "team-stats",
+        "vgi.doc_llm": "One row per team for a season and game type: record and points, regulation and shootout wins, goals and shots for/against (totals and per game), power-play and penalty-kill % (plain and net), faceoff %, and shutouts. Percentages are 0-1.",
+        "vgi.doc_md": "The NHL.com/stats team summary report for a season and game type.",
+        "vgi.example_queries": "[{\"description\": \"2025-26 special-teams ranking.\", \"sql\": \"SELECT team_name, power_play_pct, penalty_kill_pct, power_play_pct + penalty_kill_pct AS special_teams FROM nhl.main.team_stats(season := 20252026) ORDER BY special_teams DESC\"}]",
+        "vgi.result_columns_schema": "[{\"name\":\"season\",\"type\":\"INTEGER\",\"description\":\"NHL season id, such as 20252026\"},{\"name\":\"game_type\",\"type\":\"INTEGER\",\"description\":\"NHL game type: 1 preseason, 2 regular season, 3 playoffs\"},{\"name\":\"team_id\",\"type\":\"INTEGER\",\"description\":\"NHL team id\"},{\"name\":\"team_name\",\"type\":\"VARCHAR\",\"description\":\"Full team name\"},{\"name\":\"games_played\",\"type\":\"INTEGER\",\"description\":\"Games played\"},{\"name\":\"wins\",\"type\":\"INTEGER\",\"description\":\"Wins\"},{\"name\":\"losses\",\"type\":\"INTEGER\",\"description\":\"Regulation losses\"},{\"name\":\"ot_losses\",\"type\":\"INTEGER\",\"description\":\"Overtime and shootout losses\"},{\"name\":\"ties\",\"type\":\"INTEGER\",\"description\":\"Ties (before 2005-06); NULL otherwise\"},{\"name\":\"points\",\"type\":\"INTEGER\",\"description\":\"Standings points\"},{\"name\":\"point_pct\",\"type\":\"DOUBLE\",\"description\":\"Points earned divided by points available (0-1)\"},{\"name\":\"regulation_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation wins\"},{\"name\":\"regulation_and_ot_wins\",\"type\":\"INTEGER\",\"description\":\"Regulation plus overtime wins\"},{\"name\":\"shootout_wins\",\"type\":\"INTEGER\",\"description\":\"Shootout wins\"},{\"name\":\"goals_for\",\"type\":\"INTEGER\",\"description\":\"Goals scored\"},{\"name\":\"goals_against\",\"type\":\"INTEGER\",\"description\":\"Goals allowed\"},{\"name\":\"goals_for_per_game\",\"type\":\"DOUBLE\",\"description\":\"Goals scored per game\"},{\"name\":\"goals_against_per_game\",\"type\":\"DOUBLE\",\"description\":\"Goals allowed per game\"},{\"name\":\"shots_for_per_game\",\"type\":\"DOUBLE\",\"description\":\"Shots on goal per game\"},{\"name\":\"shots_against_per_game\",\"type\":\"DOUBLE\",\"description\":\"Shots on goal allowed per game\"},{\"name\":\"power_play_pct\",\"type\":\"DOUBLE\",\"description\":\"Power-play goals per power-play opportunity (0-1)\"},{\"name\":\"power_play_net_pct\",\"type\":\"DOUBLE\",\"description\":\"Power-play percentage net of shorthanded goals allowed (0-1)\"},{\"name\":\"penalty_kill_pct\",\"type\":\"DOUBLE\",\"description\":\"Share of opponent power plays killed (0-1)\"},{\"name\":\"penalty_kill_net_pct\",\"type\":\"DOUBLE\",\"description\":\"Penalty-kill percentage net of shorthanded goals scored (0-1)\"},{\"name\":\"faceoff_win_pct\",\"type\":\"DOUBLE\",\"description\":\"Faceoffs won divided by faceoffs taken (0-1)\"},{\"name\":\"shutouts\",\"type\":\"INTEGER\",\"description\":\"Team shutouts\"}]",
+        "vgi.title": "NHL Team Season Stats"
+      },
+      null,
+      [
+        "season",
+        "game_type"
+      ],
+      [
+        "INTEGER",
+        "INTEGER"
+      ],
+      null,
+      null,
+      null,
+      true,
+      null,
+      22624,
+      [
+        "SELECT team_name, power_play_pct, penalty_kill_pct, power_play_pct + penalty_kill_pct AS special_teams FROM nhl.main.team_stats(season := 20252026) ORDER BY special_teams DESC"
+      ],
+      null,
+      [
+        "hockey",
+        "nhl",
+        "statistics",
+        "teams"
+      ]
+    ]
+  ]
+}

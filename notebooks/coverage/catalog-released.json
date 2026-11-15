@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "repository": "Query-farm/vgi-nhl",
+  "revision": "dc053b9f4df0b67951bd467776ee7ae21ba10514",
+  "captured_at": "2026-11-15T01:07:12.019178+00:00",
+  "default_schema": "main",
+  "scope": "all_public_functions_and_tables",
+  "complete": true,
+  "evidence": [
+    {
+      "path": "coverage/released-functions.json",
+      "sha256": "5d11fe7a9a64979058e32d518e42c23db7d053b6d9a968bec15ced81b6966aaf",
+      "description": "Complete worker-filtered functions export through actual published Haybarn"
+    },
+    {
+      "path": "coverage/released-tables.json",
+      "sha256": "d2344b076d0d1f9db4a736b3c4017ea60d93d9fbb564e466d4ea179a1e976bb0",
+      "description": "Complete worker-filtered tables export through actual published Haybarn"
+    },
+    {
+      "path": "coverage/released-views.json",
+      "sha256": "723ac7ef6ba0811d5f384275a95e315b5b16be4fd3dae8e51fdca58d89c5c9e9",
+      "description": "Complete worker-filtered views export through actual published Haybarn"
+    }
+  ],
+  "objects": [
+    {
+      "schema": "main",
+      "name": "all_current_goalie_leaders",
+      "kind": "function",
+      "signatures": [
+        "all_current_goalie_leaders()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_current_schedule",
+      "kind": "function",
+      "signatures": [
+        "all_current_schedule()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_current_scores",
+      "kind": "function",
+      "signatures": [
+        "all_current_scores()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_current_skater_leaders",
+      "kind": "function",
+      "signatures": [
+        "all_current_skater_leaders()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_current_standings",
+      "kind": "function",
+      "signatures": [
+        "all_current_standings()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_franchises",
+      "kind": "function",
+      "signatures": [
+        "all_franchises()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_standings_seasons",
+      "kind": "function",
+      "signatures": [
+        "all_standings_seasons()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "all_teams",
+      "kind": "function",
+      "signatures": [
+        "all_teams()"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "box_score",
+      "kind": "function",
+      "signatures": [
+        "box_score(BIGINT)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "box_score_goalies",
+      "kind": "function",
+      "signatures": [
+        "box_score_goalies(BIGINT)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "draft_picks",
+      "kind": "function",
+      "signatures": [
+        "draft_picks(INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "goalie_leaders",
+      "kind": "function",
+      "signatures": [
+        "goalie_leaders(INTEGER, INTEGER, INTEGER, VARCHAR)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "goalie_stats",
+      "kind": "function",
+      "signatures": [
+        "goalie_stats(INTEGER, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "play_by_play",
+      "kind": "function",
+      "signatures": [
+        "play_by_play(BIGINT)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "player",
+      "kind": "function",
+      "signatures": [
+        "player(INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "player_career",
+      "kind": "function",
+      "signatures": [
+        "player_career(INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "player_game_log",
+      "kind": "function",
+      "signatures": [
+        "player_game_log(INTEGER, INTEGER, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "player_search",
+      "kind": "function",
+      "signatures": [
+        "player_search(VARCHAR, INTEGER, BOOLEAN)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "playoff_bracket",
+      "kind": "function",
+      "signatures": [
+        "playoff_bracket(INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "roster",
+      "kind": "function",
+      "signatures": [
+        "roster(VARCHAR, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "schedule",
+      "kind": "function",
+      "signatures": [
+        "schedule(DATE)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "scores",
+      "kind": "function",
+      "signatures": [
+        "scores(DATE)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "shift_chart",
+      "kind": "function",
+      "signatures": [
+        "shift_chart(BIGINT)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "skater_leaders",
+      "kind": "function",
+      "signatures": [
+        "skater_leaders(INTEGER, INTEGER, INTEGER, VARCHAR)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "skater_realtime_stats",
+      "kind": "function",
+      "signatures": [
+        "skater_realtime_stats(INTEGER, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "skater_stats",
+      "kind": "function",
+      "signatures": [
+        "skater_stats(INTEGER, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "standings",
+      "kind": "function",
+      "signatures": [
+        "standings(DATE)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "team_schedule",
+      "kind": "function",
+      "signatures": [
+        "team_schedule(VARCHAR, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "team_stats",
+      "kind": "function",
+      "signatures": [
+        "team_stats(INTEGER, INTEGER)"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "current_goalie_leaders",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "current_schedule",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "current_scores",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "current_skater_leaders",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "current_standings",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "franchises",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "standings_seasons",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    },
+    {
+      "schema": "main",
+      "name": "teams",
+      "kind": "table",
+      "signatures": [
+        "TABLE"
+      ],
+      "authentication": "none",
+      "access": "read"
+    }
+  ]
+}

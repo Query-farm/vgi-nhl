@@ -1,0 +1,709 @@
+{
+  "schema_version": 1,
+  "catalogs": {
+    "released": {
+      "path": "coverage/catalog-released.json",
+      "sha256": "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "catalog_sha256": "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+        "notes": "Complete actual functions/tables/views exports reconcile to37 distinct(schema,name) surfaces. Same-named aliases merge; separately named all_* backing scans remain included. No authentication/access exclusions. Analytical runs use this released worker."
+      }
+    },
+    "current": {
+      "path": "coverage/catalog-current.json",
+      "sha256": "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7",
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "catalog_sha256": "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7",
+        "notes": "Complete actual functions/tables/views exports reconcile to37 distinct(schema,name) surfaces. Same-named aliases merge; separately named all_* backing scans remain included. No authentication/access exclusions. Current public catalog collected through its remote SHA. Notebook analytical runs use releasev0.2.0, so current correspondence is not exact-current analytical execution. Source differences are metadata/examples/tasks; complete catalog remains37 names."
+      }
+    }
+  },
+  "notebooks": [
+    {
+      "path": "01_events_at_shift_boundaries.ipynb",
+      "sha256": "0165becd94bb37ec5d34d09e0d1cae8ae654c04dc9ce8569e5dfb9f8b6cb6bd7",
+      "execution": {
+        "path": "coverage/run-01.json",
+        "sha256": "0dc815d862b62ac7d49cb175e3f5a7ba825699b3b0db5986a1c95fe80a90c501"
+      }
+    },
+    {
+      "path": "02_reconcile_the_opener.ipynb",
+      "sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+      "execution": {
+        "path": "coverage/run-02.json",
+        "sha256": "8cebb1792ca865847ed9b6ea169300c4672cb2d2a0acf50f7cf295c4898d0e20"
+      }
+    },
+    {
+      "path": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+      "execution": {
+        "path": "coverage/run-03.json",
+        "sha256": "bcfa6557ec2338bd0abb96e3c4d3797a15704bc70cdc702bc1fbd58a9202f8ee"
+      }
+    },
+    {
+      "path": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+      "execution": {
+        "path": "coverage/run-04.json",
+        "sha256": "ddfa12d0a8b363285d8475342a15d0710403ae837fb96b2f23c59a97d4e5bc89"
+      }
+    }
+  ],
+  "examples": [
+    {
+      "object": {
+        "schema": "main",
+        "name": "play_by_play"
+      },
+      "notebook": "01_events_at_shift_boundaries.ipynb",
+      "sql": [
+        {
+          "cell": "cea4e7a0",
+          "reference": "nhl.main.play_by_play"
+        }
+      ],
+      "narrative_cells": [
+        "76be5da0"
+      ],
+      "result_cells": [
+        "df81d9f2"
+      ],
+      "interpretation_cells": [
+        "a76113fd"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "0165becd94bb37ec5d34d09e0d1cae8ae654c04dc9ce8569e5dfb9f8b6cb6bd7",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Compare interval-boundary conventions without inferring official on-ice attribution.",
+        "finding": "Six selected shot-related events retain their original IDs/timestamps and stay in the denominator, including unmatched events. Preserved genuine trimmed recordings have incomplete coverage and unknown acquisition timestamps; that limitation remains explicit."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "shift_chart"
+      },
+      "notebook": "01_events_at_shift_boundaries.ipynb",
+      "sql": [
+        {
+          "cell": "cea4e7a0",
+          "reference": "nhl.main.shift_chart"
+        }
+      ],
+      "narrative_cells": [
+        "76be5da0"
+      ],
+      "result_cells": [
+        "df81d9f2"
+      ],
+      "interpretation_cells": [
+        "a76113fd"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "0165becd94bb37ec5d34d09e0d1cae8ae654c04dc9ce8569e5dfb9f8b6cb6bd7",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Compare interval-boundary conventions without inferring official on-ice attribution.",
+        "finding": "Six recorded first-period Marchand shifts provide330seconds of intervals; endpoint policy changes associations2\u21921, not durations. Preserved genuine trimmed recordings have incomplete coverage and unknown acquisition timestamps; that limitation remains explicit."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "scores"
+      },
+      "notebook": "02_reconcile_the_opener.ipynb",
+      "sql": [
+        {
+          "cell": "sources-sql",
+          "reference": "nhl.main.scores"
+        }
+      ],
+      "narrative_cells": [
+        "sources-question"
+      ],
+      "result_cells": [
+        "versions-result"
+      ],
+      "interpretation_cells": [
+        "scope-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Establish shared game identity across differently scoped response grains.",
+        "finding": "Three-game day response supplies final score and shots for the common game ID. The displayed scopes/versions prevent treating three source rows as three games."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "schedule"
+      },
+      "notebook": "02_reconcile_the_opener.ipynb",
+      "sql": [
+        {
+          "cell": "sources-sql",
+          "reference": "nhl.main.schedule"
+        }
+      ],
+      "narrative_cells": [
+        "sources-question"
+      ],
+      "result_cells": [
+        "versions-result"
+      ],
+      "interpretation_cells": [
+        "scope-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Establish shared game identity across differently scoped response grains.",
+        "finding": "48-game week listing is narrowed by game ID and reconciled with the day score; schedule-only fields stay distinct. The displayed scopes/versions prevent treating three source rows as three games."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "team_schedule"
+      },
+      "notebook": "02_reconcile_the_opener.ipynb",
+      "sql": [
+        {
+          "cell": "sources-sql",
+          "reference": "nhl.main.team_schedule"
+        }
+      ],
+      "narrative_cells": [
+        "sources-question"
+      ],
+      "result_cells": [
+        "versions-result"
+      ],
+      "interpretation_cells": [
+        "scope-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Establish shared game identity across differently scoped response grains.",
+        "finding": "89-row club response includes different game types; selected game ID, season and UTC time agree with other scopes. The displayed scopes/versions prevent treating three source rows as three games."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "box_score"
+      },
+      "notebook": "02_reconcile_the_opener.ipynb",
+      "sql": [
+        {
+          "cell": "box-sql",
+          "reference": "nhl.main.box_score"
+        }
+      ],
+      "narrative_cells": [
+        "box-question"
+      ],
+      "result_cells": [
+        "audit-plot"
+      ],
+      "interpretation_cells": [
+        "goalies-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Reconcile player-level quantities before interpreting a goalie rate.",
+        "finding": "36 skaters aggregate to five total goals and56shots, reconciling with scoreboard and opposing goalies. Actual public response bodies parsed by released worker; no synthetic data or fallback."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "box_score_goalies"
+      },
+      "notebook": "02_reconcile_the_opener.ipynb",
+      "sql": [
+        {
+          "cell": "box-sql",
+          "reference": "nhl.main.box_score_goalies"
+        }
+      ],
+      "narrative_cells": [
+        "goalie-question"
+      ],
+      "result_cells": [
+        "goalies-plot"
+      ],
+      "interpretation_cells": [
+        "goalies-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "7092cc35d913a8745d2cf4336000426244f17cc919ae3b6998d0f77e806a31f4",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Reconcile player-level quantities before interpreting a goalie rate.",
+        "finding": "Four goalie rows retain unused backups and NULL rates; saves+goals equal shots, while minimum20\u21921 changes eligible goalies1\u21922. Actual public response bodies parsed by released worker; no synthetic data or fallback."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "standings_seasons"
+      },
+      "notebook": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sql": [
+        {
+          "cell": "season-sql",
+          "reference": "nhl.main.standings_seasons"
+        }
+      ],
+      "narrative_cells": [
+        "season-question"
+      ],
+      "result_cells": [
+        "window-result"
+      ],
+      "interpretation_cells": [
+        "window-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Choose an explicit completed-season standings date and applicable rule flags.",
+        "finding": "Returned20242025 season metadata identifies2025-04-17, used by the visible dated standings query and verified by SQL; overtime-loss points/no-ties flags bound accounting."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "standings"
+      },
+      "notebook": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "nhl.main.standings"
+        }
+      ],
+      "narrative_cells": [
+        "ledger-question"
+      ],
+      "result_cells": [
+        "ledger-plot"
+      ],
+      "interpretation_cells": [
+        "population-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Resolve season identity before comparing goals and changing a points-selected cohort.",
+        "finding": "32 dated rows supply points, goal totals and shootout counts; final points agree with summary while goal residuals are measured. Threshold90\u2192100 changes highlighted teams18\u21929 while all raw32-team values stay fixed."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "team_stats"
+      },
+      "notebook": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "nhl.main.team_stats"
+        }
+      ],
+      "narrative_cells": [
+        "ledger-question"
+      ],
+      "result_cells": [
+        "ledger-plot"
+      ],
+      "interpretation_cells": [
+        "population-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Resolve season identity before comparing goals and changing a points-selected cohort.",
+        "finding": "32 season-ID rows anchor identity and supply a second goal ledger. Per-team residuals reconcile to shootout wins/losses without overwriting either source. Threshold90\u2192100 changes highlighted teams18\u21929 while all raw32-team values stay fixed."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "teams"
+      },
+      "notebook": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "nhl.main.teams"
+        }
+      ],
+      "narrative_cells": [
+        "identity-question"
+      ],
+      "result_cells": [
+        "identity-result"
+      ],
+      "interpretation_cells": [
+        "identity-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Resolve season identity before comparing goals and changing a points-selected cohort.",
+        "finding": "Team-ID join keeps the historical Utah Hockey Club entry59; a code-only join would duplicate UTA because entry68 also exists. Threshold90\u2192100 changes highlighted teams18\u21929 while all raw32-team values stay fixed."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "franchises"
+      },
+      "notebook": "03_join_season_identity_before_comparing_ledgers.ipynb",
+      "sql": [
+        {
+          "cell": "fetch-sql",
+          "reference": "nhl.main.franchises"
+        }
+      ],
+      "narrative_cells": [
+        "identity-question"
+      ],
+      "result_cells": [
+        "identity-result"
+      ],
+      "interpretation_cells": [
+        "identity-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Resolve season identity before comparing goals and changing a points-selected cohort.",
+        "finding": "Franchise40 gives the most recent Utah Mammoth label, displayed beside historical identity rather than rewriting its season name. Threshold90\u2192100 changes highlighted teams18\u21929 while all raw32-team values stay fixed."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "roster"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "roster-fetch-sql",
+          "reference": "nhl.main.roster"
+        }
+      ],
+      "narrative_cells": [
+        "roster-question"
+      ],
+      "result_cells": [
+        "roster-plot"
+      ],
+      "interpretation_cells": [
+        "roster-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Distinguish roster membership, season scope, sample size and metric units.",
+        "finding": "26 listed players define a23-skater cohort, not a claim that all their season totals belong to Florida. Minimum40\u219270games selects22\u219215 skaters without changing underlying metrics or returned ranks."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "skater_stats"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "roster-fetch-sql",
+          "reference": "nhl.main.skater_stats"
+        }
+      ],
+      "narrative_cells": [
+        "roster-question"
+      ],
+      "result_cells": [
+        "roster-plot"
+      ],
+      "interpretation_cells": [
+        "roster-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Distinguish roster membership, season scope, sample size and metric units.",
+        "finding": "920-row season report joins to23 roster skaters and retains combined BOS/FLA etc. team codes; per-game rates and point identity remain explicit. Minimum40\u219270games selects22\u219215 skaters without changing underlying metrics or returned ranks."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "skater_realtime_stats"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "roster-fetch-sql",
+          "reference": "nhl.main.skater_realtime_stats"
+        }
+      ],
+      "narrative_cells": [
+        "roster-question"
+      ],
+      "result_cells": [
+        "roster-plot"
+      ],
+      "interpretation_cells": [
+        "roster-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Distinguish roster membership, season scope, sample size and metric units.",
+        "finding": "920-row physical-play report joins at player/season/game-type grain, validates games, and supplies separate hits-per-game rates. Minimum40\u219270games selects22\u219215 skaters without changing underlying metrics or returned ranks."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "skater_leaders"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "roster-fetch-sql",
+          "reference": "nhl.main.skater_leaders"
+        }
+      ],
+      "narrative_cells": [
+        "roster-question"
+      ],
+      "result_cells": [
+        "roster-plot"
+      ],
+      "interpretation_cells": [
+        "roster-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Distinguish roster membership, season scope, sample size and metric units.",
+        "finding": "100 returned points leaders provide bounded external rank context; three roster players match, absent ranks remain NULL, and matched point values reconcile. Minimum40\u219270games selects22\u219215 skaters without changing underlying metrics or returned ranks."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "player"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "career-fetch-sql",
+          "reference": "nhl.main.player"
+        }
+      ],
+      "narrative_cells": [
+        "career-question"
+      ],
+      "result_cells": [
+        "totals-result"
+      ],
+      "interpretation_cells": [
+        "totals-result"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Keep career, traded-season and club-stint scopes separate.",
+        "finding": "Profile1035career points and1154games reconcile to NHL regular-season career lines; its current team does not reassign historical points. Whole-season51 points is not Florida4points; the decomposition is unchanged by the unrelated roster eligibility experiment."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "player_career"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "career-fetch-sql",
+          "reference": "nhl.main.player_career"
+        }
+      ],
+      "narrative_cells": [
+        "career-question"
+      ],
+      "result_cells": [
+        "stint-plot"
+      ],
+      "interpretation_cells": [
+        "stint-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Keep career, traded-season and club-stint scopes separate.",
+        "finding": "52 lines include other leagues/playoffs; explicit NHL/type2/20242025 filters yield Boston47 and Florida4points and61/10games. Whole-season51 points is not Florida4points; the decomposition is unchanged by the unrelated roster eligibility experiment."
+      }
+    },
+    {
+      "object": {
+        "schema": "main",
+        "name": "player_game_log"
+      },
+      "notebook": "04_a_roster_does_not_scope_season_totals.ipynb",
+      "sql": [
+        {
+          "cell": "career-fetch-sql",
+          "reference": "nhl.main.player_game_log"
+        }
+      ],
+      "narrative_cells": [
+        "career-question"
+      ],
+      "result_cells": [
+        "stint-plot"
+      ],
+      "interpretation_cells": [
+        "stint-plot"
+      ],
+      "review": {
+        "status": "approved",
+        "reviewer": "/root/notebooks_sympy",
+        "reviewed_at": "2026-11-15T01:19:16.505624+00:00",
+        "notebook_sha256": "d07e8c036fe6fe4836e32682e392a6fbfb0fe1b8037bcacb237140f892c5f846",
+        "catalog_sha256": [
+          "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+          "0909ceabd2e8b8ca4ae5a3ba051dcd9ab966de8bb8b382f39088b06dc0f31bb7"
+        ],
+        "purpose": "Keep career, traded-season and club-stint scopes separate.",
+        "finding": "71 historical games identify actual team codes; per-stint goals, assists, points and counts independently reconcile with career lines. Whole-season51 points is not Florida4points; the decomposition is unchanged by the unrelated roster eligibility experiment."
+      }
+    }
+  ]
+}

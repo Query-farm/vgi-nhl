@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "notebook_sha256": "d85ac92d90f3006ef0d2db9e240a80a69981c71015748d9df52d7a36aa22a936",
+  "catalog_sha256": "2dd925a2be720527e47243f20a0dc379292532d0042828f7737e50ec9c6e6a05",
+  "worker_revision": "dc053b9f4df0b67951bd467776ee7ae21ba10514",
+  "status": "success",
+  "executed_at": "2026-11-15T01:19:16.505624+00:00",
+  "engine": "Haybarn2.0.0rc11/communityVGI; isolated Python3.13 NHLv0.2.0; sharedv0.3.49",
+  "command": "uv run --locked vgi-notebooks 03_join_season_identity_before_comparing_ledgers.ipynb --timeout 600",
+  "catalog_aliases": [
+    "nhl"
+  ],
+  "cells": [
+    {
+      "id": "parameters",
+      "status": "success",
+      "execution_count": 1,
+      "source_sha256": "140c0507c470276d666e14ef08ff4e0b2e0cec19d841821181c60a0e6b5c5a75",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "bootstrap",
+      "status": "success",
+      "execution_count": 2,
+      "source_sha256": "68dadbca228e81a1535c1e851d47c4f3b0e2130a237d7eeedcb38f3bb4de8d38",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "setup",
+      "status": "success",
+      "execution_count": 3,
+      "source_sha256": "fec8de7b1f9d37ecd8d8c9a6c9278a758f2265e0020b3c02a11a0a7ebe67c2e3",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "attach",
+      "status": "success",
+      "execution_count": 4,
+      "source_sha256": "35b7feb52100539b977d678eaf72cf093f894b9031392ca2b9fd0b0394f6cfbb",
+      "outputs_sha256": "c17c19a5c176854762c97c96bafef62f247262c382ecc6533cf998819c105960"
+    },
+    {
+      "id": "season-sql",
+      "status": "success",
+      "execution_count": 5,
+      "source_sha256": "7e2029c6d56543d6863940e8fe88d989df4b5f040f2993ba6646542b8fa94cc5",
+      "outputs_sha256": "23c8940505861b0952ea3eeab2c75a52fa17ba150448cdb4800ec9653ee5050b"
+    },
+    {
+      "id": "window-sql",
+      "status": "success",
+      "execution_count": 6,
+      "source_sha256": "ab6141a7029e54232b5ac87811e4e585c8a45b6d8801e3065ac2af2e5e539abd",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "window-result",
+      "status": "success",
+      "execution_count": 7,
+      "source_sha256": "7d4507f78c2c0811cd69b08d896cbb003c2c43241d0c6ab26ddd5a9a2c3af48a",
+      "outputs_sha256": "38a6a7852111d6c143b9c1e0a24340add6de58694338ac9fc5ed08cd4b2275df"
+    },
+    {
+      "id": "fetch-sql",
+      "status": "success",
+      "execution_count": 8,
+      "source_sha256": "ee4c70d68ac9afe65c679f252463af2e15e5c6b31126efb0c7576948c4373951",
+      "outputs_sha256": "3aebf501f17c9480cd5b863e4e9f29e97ebdc9441bc67ae88e0185a4d9cea8ae"
+    },
+    {
+      "id": "identity-sql",
+      "status": "success",
+      "execution_count": 9,
+      "source_sha256": "68f4a7d171531a7b809f78ed78b2fc06ad7be20a1dbc918b6c7629915af7bea9",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "identity-result",
+      "status": "success",
+      "execution_count": 10,
+      "source_sha256": "06fe5f23698aa5a2e5a6ecba95702081c17863c7a0154ab2cc585470949fab6b",
+      "outputs_sha256": "5075027e1c9f180a999b58622f079e6e8d6f6e879c956cd19498cbb3657b3b11"
+    },
+    {
+      "id": "ledger-sql",
+      "status": "success",
+      "execution_count": 11,
+      "source_sha256": "0840f158d803224590df9e7d7097dcdbd77a58ee2454b4f8cf3f271c3050d1f8",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "ledger-plot",
+      "status": "success",
+      "execution_count": 12,
+      "source_sha256": "cdf4794597de9e58348f70b1016290633d83051f7d241974247eb573a04f1e83",
+      "outputs_sha256": "2cd65b7b80f3234a09a235a86ff958dee31be660a878fbc64a5f250663e56f29"
+    },
+    {
+      "id": "population-sql",
+      "status": "success",
+      "execution_count": 13,
+      "source_sha256": "0c2ce3b0194f4991285fc0cde8470635a1079082c33c4360e72ab783460306a4",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "population-plot",
+      "status": "success",
+      "execution_count": 14,
+      "source_sha256": "5034c7a166447358af214f6d77493dbe5eeca3f3ceb63415794f945da79386c4",
+      "outputs_sha256": "a5a59c8acf7b80ab7a177b4e13e46a4b0e262be7dabaf79adf443f67c94efd81"
+    },
+    {
+      "id": "checks-sql",
+      "status": "success",
+      "execution_count": 15,
+      "source_sha256": "eee673afb74fefa93d606961e869d62043a154fb98c54027b62b3a75b410cc5c",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    {
+      "id": "validation-result",
+      "status": "success",
+      "execution_count": 16,
+      "source_sha256": "565f9efaf95b1cbe3a961947f7d3ebedd124cc0992631950ec225ce0ee4f072d",
+      "outputs_sha256": "ccd6cc741b6540e63db055aec4e80b293f03a71cc1225603e6df3fedec8ec86b"
+    },
+    {
+      "id": "cleanup",
+      "status": "success",
+      "execution_count": 17,
+      "source_sha256": "0bf8ca21bff397dab13f7ad55891bec878a67cbd2cf547fa64952761bd499fb2",
+      "outputs_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    }
+  ]
+}
