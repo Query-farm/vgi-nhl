@@ -109,7 +109,7 @@ def to_int(value: Any) -> int | None:
         return int(value) if value.is_integer() else None
     try:
         return int(value)
-    except (TypeError, ValueError, OverflowError):
+    except TypeError, ValueError, OverflowError:
         return None
 
 
@@ -119,7 +119,7 @@ def to_float(value: Any) -> float | None:
         return None
     try:
         result = float(value)
-    except (TypeError, ValueError, OverflowError):
+    except TypeError, ValueError, OverflowError:
         return None
     return result if result == result and result not in (float("inf"), float("-inf")) else None
 
@@ -149,7 +149,7 @@ def to_timestamp(value: Any) -> datetime | None:
         return None
     try:
         result = datetime.fromisoformat(value.replace("Z", "+00:00"))
-    except (ValueError, OverflowError):
+    except ValueError, OverflowError:
         return None
     if result.tzinfo is None:
         result = result.replace(tzinfo=UTC)
