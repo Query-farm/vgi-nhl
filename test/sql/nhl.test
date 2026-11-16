@@ -1,0 +1,36 @@
+# name: test/sql/nhl.test
+# description: Hermetic end-to-end coverage: every table plus play-by-play and scores calls,
+#   served from tests/fixtures by test/mock_api/server.py (see ci/run-integration.sh).
+# group: [nhl]
+
+require vgi
+
+require-env VGI_NHL_WORKER
+
+require-env NHL_WEB_BASE_URL
+
+statement ok
+ATTACH 'nhl' (TYPE vgi, LOCATION '{VGI_NHL_WORKER}');
+
+query IIIIIIII
+SELECT
+  (SELECT count(*) FROM nhl.main.current_standings),
+  (SELECT count(*) FROM nhl.main.current_schedule),
+  (SELECT count(*) FROM nhl.main.current_scores),
+  (SELECT count(*) FROM nhl.main.current_skater_leaders),
+  (SELECT count(*) FROM nhl.main.current_goalie_leaders),
+  (SELECT count(*) FROM nhl.main.standings_seasons),
+  (SELECT count(*) FROM nhl.main.teams),
+  (SELECT count(*) FROM nhl.main.franchises);
+----
+4	4	3	27	12	5	3	3
+
+query I
+SELECT count(*) FROM nhl.main.play_by_play(2025020001) WHERE event_type = 'goal';
+----
+5
+
+query T
+SELECT home_team_abbrev FROM nhl.main.scores(date := DATE '2025-10-07') WHERE game_id = 2025020001;
+----
+FLA
